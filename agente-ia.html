@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentes de IA & SDR Automático | Edson Egilio</title>
+    <meta name="description" content="Automatize seu atendimento e vendas com Agentes de Inteligência Artificial. Solução para pequenos negócios por Edson Egilio.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#0066FF',
+                            blueDark: '#0052cc',
+                            black: '#111111',
+                            nude: {
+                                50: '#FDFBF7',
+                                100: '#F5F2EB',
+                                200: '#EBE6DC',
+                                300: '#D6D1C7'
+                            }
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        html { scroll-behavior: smooth; }
+        body { background-color: #FDFBF7; color: #111111; }
+        
+        /* Custom Accordion Style */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- HEADER FLUTUANTE -->
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-6 bg-transparent">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+            <a href="index.html" class="font-bold text-2xl tracking-tight text-brand-black">
+                Edson<span class="text-brand-blue">Egilio</span>
+            </a>
+
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="hidden md:block text-sm font-medium text-gray-600 hover:text-brand-blue transition-colors">
+                    Voltar para Home
+                </a>
+                <a href="https://wa.me/5515991220741" target="_blank" class="bg-brand-blue text-white px-5 py-2 rounded-lg font-medium hover:bg-brand-blueDark transition-colors shadow-md text-sm flex items-center gap-2">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    WhatsApp
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. HERO SECTION -->
+    <section class="pt-32 pb-20 md:pt-48 md:pb-32 px-6 bg-brand-nude-50">
+        <div class="max-w-5xl mx-auto text-center animate-fade-in-up">
+            <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-brand-blue text-sm font-bold tracking-wider mb-6 uppercase">
+                Automação Inteligente
+            </span>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 text-brand-black">
+                Se você é um pequeno empreendedor cansado de <span class="text-brand-blue">perder vendas</span> por falta de tempo para responder mensagens...
+            </h1>
+            <h2 class="text-xl md:text-2xl text-gray-600 font-light mb-10 max-w-3xl mx-auto leading-relaxed">
+                Pare de tentar fazer tudo sozinho. Tenha um "funcionário digital" que trabalha 24h por dia, responde instantaneamente e nunca esquece um cliente.
+            </h2>
+            
+            <a href="https://wa.me/5515991220741" target="_blank" class="inline-flex items-center justify-center bg-brand-blue hover:bg-brand-blueDark text-white text-lg md:text-xl font-bold py-4 px-8 rounded-xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 gap-3">
+                <i data-lucide="bot" class="w-6 h-6"></i>
+                Quero meu Agente de IA
+            </a>
+            <p class="mt-4 text-sm text-gray-500">Implementação rápida e personalizada.</p>
+        </div>
+    </section>
+
+    <!-- 2. SEÇÃO PROBLEMA -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <h3 class="text-3xl font-bold text-center mb-12">Isso soa familiar?</h3>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="flex items-start gap-4 p-6 rounded-xl bg-brand-nude-50 border border-brand-nude-200">
+                    <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center shrink-0 mt-1">
+                        <i data-lucide="x" class="text-red-600 w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2">Cliente no Vácuo</h4>
+                        <p class="text-gray-600">O cliente manda mensagem interessado, você demora horas para ver, e ele fecha com o concorrente.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4 p-6 rounded-xl bg-brand-nude-50 border border-brand-nude-200">
+                    <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center shrink-0 mt-1">
+                        <i data-lucide="x" class="text-red-600 w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2">Perguntas Repetitivas</h4>
+                        <p class="text-gray-600">Você perde metade do dia respondendo "quanto custa?" e "como funciona?" em vez de focar na estratégia.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4 p-6 rounded-xl bg-brand-nude-50 border border-brand-nude-200">
+                    <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center shrink-0 mt-1">
+                        <i data-lucide="x" class="text-red-600 w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2">Fim de Semana Perdido</h4>
+                        <p class="text-gray-600">Seu negócio para quando você para. Feriados e noites viram sinônimo de dinheiro perdido.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4 p-6 rounded-xl bg-brand-nude-50 border border-brand-nude-200">
+                    <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center shrink-0 mt-1">
+                        <i data-lucide="x" class="text-red-600 w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2">Agendamento Caótico</h4>
+                        <p class="text-gray-600">Troca de 10 mensagens só para achar um horário na agenda que funcione para os dois.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. SEÇÃO SOLUÇÃO -->
+    <section class="py-20 bg-brand-black text-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2">
+                    <span class="text-brand-blue font-bold tracking-wider uppercase mb-2 block">A Solução</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">O que é um Agente de IA?</h2>
+                    <p class="text-xl text-gray-400 mb-8 font-light leading-relaxed">
+                        Não é um "chatbot" burro que só dá opções de botões. É uma inteligência treinada com as informações do SEU negócio, capaz de conversar, argumentar, agendar e vender como se fosse você.
+                    </p>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3 text-lg">
+                            <i data-lucide="check-circle-2" class="text-brand-blue w-6 h-6"></i>
+                            Entende áudio e texto natural
+                        </li>
+                        <li class="flex items-center gap-3 text-lg">
+                            <i data-lucide="check-circle-2" class="text-brand-blue w-6 h-6"></i>
+                            Responde em segundos, 24/7
+                        </li>
+                        <li class="flex items-center gap-3 text-lg">
+                            <i data-lucide="check-circle-2" class="text-brand-blue w-6 h-6"></i>
+                            Segue seu tom de voz e regras
+                        </li>
+                        <li class="flex items-center gap-3 text-lg">
+                            <i data-lucide="check-circle-2" class="text-brand-blue w-6 h-6"></i>
+                            Conecta direto no seu WhatsApp
+                        </li>
+                    </ul>
+                </div>
+                <div class="lg:w-1/2 bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border border-gray-700 shadow-2xl relative">
+                    <!-- Simulação de Chat -->
+                    <div class="space-y-4">
+                        <div class="flex gap-3">
+                            <div class="bg-white/10 w-8 h-8 rounded-full flex items-center justify-center text-xs">👤</div>
+                            <div class="bg-gray-700 rounded-lg p-3 rounded-tl-none text-sm max-w-[80%]">
+                                Olá, gostaria de saber o valor da consultoria e se tem horário pra sexta.
+                            </div>
+                        </div>
+                        <div class="flex gap-3 justify-end">
+                            <div class="bg-brand-blue rounded-lg p-3 rounded-tr-none text-sm max-w-[80%]">
+                                Olá! Tudo bem? O valor da consultoria é R$ 500. Tenho horário disponível na sexta às 14h ou 16h. Qual prefere? Posso reservar? 😊
+                            </div>
+                            <div class="bg-white w-8 h-8 rounded-full flex items-center justify-center text-xs text-brand-black font-bold">IA</div>
+                        </div>
+                         <div class="flex gap-3">
+                            <div class="bg-white/10 w-8 h-8 rounded-full flex items-center justify-center text-xs">👤</div>
+                            <div class="bg-gray-700 rounded-lg p-3 rounded-tl-none text-sm max-w-[80%]">
+                                Pode ser às 14h! Como pago?
+                            </div>
+                        </div>
+                        <div class="flex gap-3 justify-end">
+                            <div class="bg-brand-blue rounded-lg p-3 rounded-tr-none text-sm max-w-[80%]">
+                                Perfeito! Já reservei as 14h para você. O pagamento pode ser via Pix na chave... Me envie o comprovante por aqui?
+                            </div>
+                            <div class="bg-white w-8 h-8 rounded-full flex items-center justify-center text-xs text-brand-black font-bold">IA</div>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-4 -right-4 bg-green-500 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-lg animate-pulse">
+                        Venda realizada enquanto você dormia!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. ANTES E DEPOIS -->
+    <section class="py-20 bg-brand-nude-100">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">A Diferença é Brutal</h2>
+            
+            <div class="grid md:grid-cols-2 gap-0 md:gap-8">
+                <!-- Antes -->
+                <div class="bg-white p-8 md:rounded-l-2xl md:rounded-r-none border-b md:border-b-0 md:border-r border-gray-200 relative overflow-hidden group hover:bg-red-50 transition-colors">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-red-400"></div>
+                    <h3 class="text-2xl font-bold text-gray-400 mb-6 group-hover:text-red-500 transition-colors">Como é Hoje (Manual)</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3 text-gray-600"><i data-lucide="x" class="text-red-400 w-5 h-5"></i> Tempo médio de resposta: 2 a 5 horas</li>
+                        <li class="flex items-center gap-3 text-gray-600"><i data-lucide="x" class="text-red-400 w-5 h-5"></i> Esquece de fazer follow-up</li>
+                        <li class="flex items-center gap-3 text-gray-600"><i data-lucide="x" class="text-red-400 w-5 h-5"></i> Atendimento varia conforme seu humor</li>
+                        <li class="flex items-center gap-3 text-gray-600"><i data-lucide="x" class="text-red-400 w-5 h-5"></i> Leads esfriam e compram do concorrente</li>
+                    </ul>
+                </div>
+
+                <!-- Depois -->
+                <div class="bg-white p-8 md:rounded-r-2xl md:rounded-l-none relative overflow-hidden shadow-lg transform md:-translate-x-2 md:-translate-y-2 group hover:bg-blue-50 transition-colors z-10">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-brand-blue"></div>
+                    <h3 class="text-2xl font-bold text-brand-black mb-6 group-hover:text-brand-blue transition-colors">Com Agente IA Edson Egilio</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3 font-medium"><i data-lucide="check" class="text-green-500 w-5 h-5"></i> Tempo médio de resposta: 30 segundos</li>
+                        <li class="flex items-center gap-3 font-medium"><i data-lucide="check" class="text-green-500 w-5 h-5"></i> Follow-up automático e persistente</li>
+                        <li class="flex items-center gap-3 font-medium"><i data-lucide="check" class="text-green-500 w-5 h-5"></i> Atendimento padrão ouro, sempre simpático</li>
+                        <li class="flex items-center gap-3 font-medium"><i data-lucide="check" class="text-green-500 w-5 h-5"></i> Captura o cliente no momento do interesse</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. PARA QUEM É -->
+    <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Para quem é essa tecnologia?</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+                <div class="p-6 border rounded-xl hover:border-brand-blue hover:shadow-lg transition-all text-center">
+                    <i data-lucide="stethoscope" class="w-10 h-10 text-brand-blue mx-auto mb-4"></i>
+                    <h4 class="font-bold">Clínicas e Consultórios</h4>
+                    <p class="text-sm text-gray-500 mt-2">Agendamento de pacientes e tirar dúvidas de procedimentos.</p>
+                </div>
+                <div class="p-6 border rounded-xl hover:border-brand-blue hover:shadow-lg transition-all text-center">
+                    <i data-lucide="home" class="w-10 h-10 text-brand-blue mx-auto mb-4"></i>
+                    <h4 class="font-bold">Imobiliárias e Corretores</h4>
+                    <p class="text-sm text-gray-500 mt-2">Qualificação de leads e agendamento de visitas.</p>
+                </div>
+                <div class="p-6 border rounded-xl hover:border-brand-blue hover:shadow-lg transition-all text-center">
+                    <i data-lucide="graduation-cap" class="w-10 h-10 text-brand-blue mx-auto mb-4"></i>
+                    <h4 class="font-bold">Infoprodutores</h4>
+                    <p class="text-sm text-gray-500 mt-2">Suporte a alunos e recuperação de vendas.</p>
+                </div>
+                <div class="p-6 border rounded-xl hover:border-brand-blue hover:shadow-lg transition-all text-center">
+                    <i data-lucide="shopping-bag" class="w-10 h-10 text-brand-blue mx-auto mb-4"></i>
+                    <h4 class="font-bold">E-commerce e Loja Local</h4>
+                    <p class="text-sm text-gray-500 mt-2">Status de pedido, catálogo e fechamento de venda.</p>
+                </div>
+                <div class="p-6 border rounded-xl hover:border-brand-blue hover:shadow-lg transition-all text-center">
+                    <i data-lucide="briefcase" class="w-10 h-10 text-brand-blue mx-auto mb-4"></i>
+                    <h4 class="font-bold">Advogados e Contadores</h4>
+                    <p class="text-sm text-gray-500 mt-2">Triagem inicial de clientes e agendamento de reuniões.</p>
+                </div>
+                <div class="p-6 border rounded-xl hover:border-brand-blue hover:shadow-lg transition-all text-center">
+                    <i data-lucide="scissors" class="w-10 h-10 text-brand-blue mx-auto mb-4"></i>
+                    <h4 class="font-bold">Estética e Beleza</h4>
+                    <p class="text-sm text-gray-500 mt-2">Marcação de horário sem parar o atendimento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. O QUE FAZ -->
+    <section class="py-20 bg-brand-nude-50">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">O que seu Agente vai fazer por você:</h2>
+            
+            <div class="bg-white rounded-2xl p-8 shadow-sm border border-brand-nude-200 columns-1 md:columns-2 gap-8 space-y-4">
+                <div class="flex items-start gap-3 break-inside-avoid">
+                    <i data-lucide="check-square" class="text-green-500 w-5 h-5 shrink-0 mt-1"></i>
+                    <p>Atendimento 24 horas por dia, 7 dias por semana</p>
+                </div>
+                <div class="flex items-start gap-3 break-inside-avoid">
+                    <i data-lucide="check-square" class="text-green-500 w-5 h-5 shrink-0 mt-1"></i>
+                    <p>Qualificação de Leads (saber quem é curioso e quem quer comprar)</p>
+                </div>
+                <div class="flex items-start gap-3 break-inside-avoid">
+                    <i data-lucide="check-square" class="text-green-500 w-5 h-5 shrink-0 mt-1"></i>
+                    <p>Agendamento integrado com Google Calendar</p>
+                </div>
+                <div class="flex items-start gap-3 break-inside-avoid">
+                    <i data-lucide="check-square" class="text-green-500 w-5 h-5 shrink-0 mt-1"></i>
+                    <p>Responde dúvidas frequentes instantaneamente</p>
+                </div>
+                <div class="flex items-start gap-3 break-inside-avoid">
+                    <i data-lucide="check-square" class="text-green-500 w-5 h-5 shrink-0 mt-1"></i>
+                    <p>Envia links de pagamento e propostas</p>
+                </div>
+                <div class="flex items-start gap-3 break-inside-avoid">
+                    <i data-lucide="check-square" class="text-green-500 w-5 h-5 shrink-0 mt-1"></i>
+                    <p>Transfere para humano quando a situação é complexa</p>
+                </div>
+                <div class="flex items-start gap-3 break-inside-avoid">
+                    <i data-lucide="check-square" class="text-green-500 w-5 h-5 shrink-0 mt-1"></i>
+                    <p>Interpreta áudios (transcreve e responde)</p>
+                </div>
+                <div class="flex items-start gap-3 break-inside-avoid">
+                    <i data-lucide="check-square" class="text-green-500 w-5 h-5 shrink-0 mt-1"></i>
+                    <p>Follow-up de recuperação (chama o cliente que sumiu)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. POR QUE COMIGO -->
+    <section class="py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <div class="md:w-1/3">
+                    <div class="relative w-full aspect-square max-w-sm mx-auto">
+                        <div class="absolute inset-0 bg-brand-blue rounded-full transform translate-x-3 translate-y-3"></div>
+                        <img src="./edson.png" alt="Edson Egilio" class="relative w-full h-full object-cover rounded-full border-4 border-white shadow-lg bg-gray-200">
+                    </div>
+                </div>
+                <div class="md:w-2/3">
+                    <h2 class="text-3xl font-bold mb-6">Por que fazer seu Agente com Edson Egilio?</h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Eu não sou apenas um "programador". Sou consultor de comunicação e marketing há mais de 30 anos.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        A maioria dos técnicos sabe fazer o robô funcionar, mas não sabe fazê-lo <strong>VENDER</strong>. Eu treino seu agente não apenas com dados, mas com técnicas de persuasão, empatia e clareza.
+                    </p>
+                    <div class="bg-brand-nude-100 p-4 border-l-4 border-brand-blue rounded-r-lg">
+                        <p class="italic text-brand-black font-medium">
+                            "Tecnologia sem estratégia é apenas custo. Tecnologia com estratégia é lucro."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. O QUE ESTÁ INCLUÍDO -->
+    <section class="py-20 bg-brand-black text-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Como funciona a implementação?</h2>
+            
+            <div class="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent">
+                
+                <!-- Item 1 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-slate-300 group-[.is-active]:bg-brand-blue text-slate-500 group-[.is-active]:text-emerald-50 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                        1
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded bg-gray-800 border border-gray-700 shadow">
+                        <div class="font-bold text-brand-blue mb-1">Briefing e Estratégia</div>
+                        <div class="text-gray-400 text-sm">Entendo seu negócio, seus produtos e como você vende.</div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-slate-300 group-[.is-active]:bg-brand-blue text-slate-500 group-[.is-active]:text-emerald-50 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                        2
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded bg-gray-800 border border-gray-700 shadow">
+                        <div class="font-bold text-brand-blue mb-1">Criação da Base de Conhecimento</div>
+                        <div class="text-gray-400 text-sm">Estruturo as informações vitais que a IA precisa saber.</div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-slate-300 group-[.is-active]:bg-brand-blue text-slate-500 group-[.is-active]:text-emerald-50 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                        3
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded bg-gray-800 border border-gray-700 shadow">
+                        <div class="font-bold text-brand-blue mb-1">Desenvolvimento do Agente</div>
+                        <div class="text-gray-400 text-sm">Configuração técnica, fluxos de conversa e integrações.</div>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-slate-300 group-[.is-active]:bg-brand-blue text-slate-500 group-[.is-active]:text-emerald-50 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                        4
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded bg-gray-800 border border-gray-700 shadow">
+                        <div class="font-bold text-brand-blue mb-1">Testes e Ajustes</div>
+                        <div class="text-gray-400 text-sm">Simulamos conversas reais para refinar as respostas.</div>
+                    </div>
+                </div>
+
+                 <!-- Item 5 -->
+                 <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-slate-300 group-[.is-active]:bg-brand-blue text-slate-500 group-[.is-active]:text-emerald-50 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                        5
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded bg-gray-800 border border-gray-700 shadow">
+                        <div class="font-bold text-brand-blue mb-1">Entrega e Treinamento</div>
+                        <div class="text-gray-400 text-sm">Te entrego pronto e ensino você a monitorar.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. PREÇOS -->
+    <section class="py-20 bg-brand-nude-50">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-4">Investimento Transparente</h2>
+            <p class="text-gray-600 mb-12">Sem surpresas, sem taxas escondidas.</p>
+
+            <div class="flex flex-col md:flex-row gap-8 justify-center items-stretch">
+                <!-- Setup -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg border border-brand-nude-200 flex-1 flex flex-col">
+                    <div class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Implementação</div>
+                    <div class="text-4xl font-bold text-brand-black mb-2">R$ 2.000</div>
+                    <div class="text-gray-500 text-sm mb-6">Pagamento Único</div>
+                    
+                    <ul class="text-left space-y-3 mb-8 flex-grow">
+                        <li class="flex items-center gap-2 text-sm"><i data-lucide="check" class="text-green-500 w-4 h-4"></i> Setup completo do Agente</li>
+                        <li class="flex items-center gap-2 text-sm"><i data-lucide="check" class="text-green-500 w-4 h-4"></i> Criação da Base de Conhecimento</li>
+                        <li class="flex items-center gap-2 text-sm"><i data-lucide="check" class="text-green-500 w-4 h-4"></i> Integração com WhatsApp</li>
+                        <li class="flex items-center gap-2 text-sm"><i data-lucide="check" class="text-green-500 w-4 h-4"></i> Testes e Validação</li>
+                    </ul>
+                </div>
+
+                <!-- Mensalidade -->
+                <div class="bg-brand-blue rounded-2xl p-8 shadow-xl flex-1 flex flex-col text-white transform md:-translate-y-4">
+                    <div class="bg-white/20 inline-block px-3 py-1 rounded-full text-xs font-bold mb-4 self-center">MANUTENÇÃO</div>
+                    <div class="text-sm font-bold text-blue-100 uppercase tracking-widest mb-4">Acompanhamento</div>
+                    <div class="text-4xl font-bold mb-2">R$ 500</div>
+                    <div class="text-blue-100 text-sm mb-6">Por mês</div>
+                    
+                    <ul class="text-left space-y-3 mb-8 flex-grow text-blue-50">
+                        <li class="flex items-center gap-2 text-sm"><i data-lucide="check" class="text-white w-4 h-4"></i> Ajustes e melhorias constantes</li>
+                        <li class="flex items-center gap-2 text-sm"><i data-lucide="check" class="text-white w-4 h-4"></i> Relatório de desempenho</li>
+                        <li class="flex items-center gap-2 text-sm"><i data-lucide="check" class="text-white w-4 h-4"></i> Suporte técnico</li>
+                        <li class="flex items-center gap-2 text-sm"><i data-lucide="check" class="text-white w-4 h-4"></i> Atualização de informações</li>
+                    </ul>
+                    
+                    <a href="https://wa.me/5515991220741" target="_blank" class="block w-full bg-white text-brand-blue font-bold py-3 rounded-lg hover:bg-gray-100 transition-colors">
+                        Falar com Edson
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-8 text-sm text-gray-500 max-w-2xl mx-auto bg-white p-4 rounded-lg border border-gray-200">
+                <strong>Nota:</strong> Os custos das ferramentas de IA (OpenAI, Plataforma de Fluxo, API WhatsApp) são pagos diretamente pelo cliente às plataformas. Custo médio estimado: R$ 150 a R$ 300/mês, dependendo do volume de mensagens.
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. DEPOIMENTOS -->
+    <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Quem já automatizou</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Depoimento 1 -->
+                <div class="p-6 bg-brand-nude-50 rounded-xl border border-brand-nude-200">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center font-bold text-gray-600">RC</div>
+                        <div>
+                            <div class="font-bold text-sm">Ricardo Costa</div>
+                            <div class="text-xs text-gray-500">Clínica Odontológica</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 italic">"Antes eu perdia o domingo respondendo paciente. Agora a IA agenda tudo. Minha recepção só confirma."</p>
+                </div>
+
+                <!-- Depoimento 2 -->
+                <div class="p-6 bg-brand-nude-50 rounded-xl border border-brand-nude-200">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center font-bold text-gray-600">ML</div>
+                        <div>
+                            <div class="font-bold text-sm">Mariana Lima</div>
+                            <div class="text-xs text-gray-500">Loja de Roupas</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 italic">"O robô respondeu uma cliente às 3 da manhã e fechou a venda. Eu acordei com o Pix na conta. Surreal."</p>
+                </div>
+
+                <!-- Depoimento 3 -->
+                <div class="p-6 bg-brand-nude-50 rounded-xl border border-brand-nude-200">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center font-bold text-gray-600">FS</div>
+                        <div>
+                            <div class="font-bold text-sm">Felipe Santos</div>
+                            <div class="text-xs text-gray-500">Corretor de Imóveis</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 italic">"A IA qualifica o lead antes de chegar em mim. Só falo com quem realmente quer comprar. Ganhei muito tempo."</p>
+                </div>
+                
+                <!-- Depoimento 4 -->
+                <div class="p-6 bg-brand-nude-50 rounded-xl border border-brand-nude-200">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center font-bold text-gray-600">AB</div>
+                        <div>
+                            <div class="font-bold text-sm">Ana Beatriz</div>
+                            <div class="text-xs text-gray-500">Nutricionista</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 italic">"O Edson configurou tudo perfeitamente. A linguagem é exatamente como eu falo. Meus pacientes nem percebem."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. FAQ -->
+    <section class="py-20 bg-brand-nude-50">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Perguntas Frequentes</h2>
+            
+            <div class="space-y-4">
+                <details class="bg-white p-6 rounded-lg shadow-sm group">
+                    <summary class="flex justify-between items-center cursor-pointer font-bold text-brand-black">
+                        Funciona no meu WhatsApp atual?
+                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform group-open:rotate-180 text-brand-blue"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600">Sim! Integramos ao seu número existente. Você continua vendo as mensagens e pode intervir a qualquer momento.</p>
+                </details>
+
+                <details class="bg-white p-6 rounded-lg shadow-sm group">
+                    <summary class="flex justify-between items-center cursor-pointer font-bold text-brand-black">
+                        A IA vai falar bobagem para o cliente?
+                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform group-open:rotate-180 text-brand-blue"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600">Muito difícil. Nós criamos uma "cerca virtual" (Base de Conhecimento) e instruímos a IA a responder APENAS com base no que fornecemos. Se ela não souber, ela transfere para um humano.</p>
+                </details>
+
+                <details class="bg-white p-6 rounded-lg shadow-sm group">
+                    <summary class="flex justify-between items-center cursor-pointer font-bold text-brand-black">
+                        Quanto tempo demora para ficar pronto?
+                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform group-open:rotate-180 text-brand-blue"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600">Em média, de 7 a 14 dias para estruturar, configurar e testar tudo antes de liberar para o público.</p>
+                </details>
+
+                <details class="bg-white p-6 rounded-lg shadow-sm group">
+                    <summary class="flex justify-between items-center cursor-pointer font-bold text-brand-black">
+                        Posso mudar as respostas depois?
+                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform group-open:rotate-180 text-brand-blue"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600">Claro. Na mensalidade de acompanhamento já está incluso atualizações de preços, horários e informações.</p>
+                </details>
+                
+                <details class="bg-white p-6 rounded-lg shadow-sm group">
+                    <summary class="flex justify-between items-center cursor-pointer font-bold text-brand-black">
+                        Preciso deixar o computador ligado?
+                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform group-open:rotate-180 text-brand-blue"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600">Não. O sistema roda na nuvem, 24 horas por dia, independente do seu celular ou computador.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. CTA FINAL -->
+    <section class="py-24 bg-brand-blue text-white text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Pare de perder dinheiro para a concorrência</h2>
+            <p class="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
+                Enquanto você lia essa página, seu concorrente pode ter respondido um cliente seu. Vamos automatizar seu negócio hoje?
+            </p>
+            
+            <a href="https://wa.me/5515991220741" target="_blank" class="inline-flex items-center justify-center bg-white text-brand-blue hover:bg-gray-100 text-xl font-bold py-5 px-10 rounded-full shadow-2xl transition-all duration-300 transform hover:-translate-y-1 gap-3">
+                <i data-lucide="message-circle" class="w-6 h-6"></i>
+                Agendar Reunião com Edson
+            </a>
+        </div>
+    </section>
+
+    <!-- 13. FOOTER -->
+    <footer class="bg-brand-black text-white py-16 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-center md:text-left">
+                <h2 class="text-2xl font-bold mb-2">Edson<span class="text-brand-blue">Egilio</span></h2>
+                <p class="text-gray-400 max-w-sm">
+                    Marketing e Automação com Inteligência. Simplicidade que gera lucro.
+                </p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-6 md:gap-12 text-sm text-gray-400 text-center md:text-right">
+                <a href="index.html" class="hover:text-brand-blue transition-colors">Home</a>
+                <a href="#" class="hover:text-brand-blue transition-colors">Instagram</a>
+                <a href="#" class="hover:text-brand-blue transition-colors">Termos de Uso</a>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-gray-800 text-center text-xs text-gray-600">
+            &copy; 2025 Edson Luiz Egilio. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <!-- BOTÃO FLUTUANTE WHATSAPP -->
+    <a href="https://wa.me/5515991220741" target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 flex items-center justify-center">
+        <i data-lucide="message-circle" class="w-8 h-8"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        // Inicializa ícones
+        lucide.createIcons();
+
+        // Script simples para Header mudar de cor ao rolar
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.remove('bg-transparent', 'py-6');
+                header.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-4');
+            } else {
+                header.classList.add('bg-transparent', 'py-6');
+                header.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-4');
+            }
+        });
+    </script>
+</body>
+</html>
