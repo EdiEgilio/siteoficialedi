@@ -92,6 +92,30 @@
             height: 1px;
             background: linear-gradient(90deg, transparent, #c9a961, transparent);
         }
+
+        /* Placeholder para imagens de produtos */
+        .product-image-placeholder {
+            background: linear-gradient(135deg, #1e3a5f 0%, #152938 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(201, 169, 97, 0.2) 0%, transparent 60%);
+        }
+
+        .product-image-gold {
+            background: linear-gradient(135deg, #c9a961 0%, #b8954d 100%);
+        }
     </style>
 </head>
 <body class="bg-white text-gray-800">
@@ -99,15 +123,8 @@
     <!-- HERO SECTION -->
     <section class="min-h-screen flex items-center justify-center bg-gradient-to-br from-brand-nude-50 to-white px-6 py-20 md:py-0">
         <div class="max-w-5xl mx-auto text-center fade-in">
-            
-            <!-- Foto (mesma do site atual) -->
-            <div class="mb-8 md:mb-12">
-                <img src="https://edsonegilio.com.br/foto-edson-egilio.jpg" 
-                     alt="Edson Egilio" 
-                     class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto object-cover border-4 border-white shadow-xl">
-            </div>
 
-            <!-- Headline Principal -->
+            <!-- Headline Principal (SEM FOTO) -->
             <h1 class="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-brand-blue mb-6 leading-tight">
                 Você Sabe Onde Seu Negócio<br class="hidden md:block"> 
                 Precisa Chegar.<br>
@@ -511,9 +528,17 @@
                 
                 <!-- Foto -->
                 <div class="md:col-span-2">
-                    <img src="https://edsonegilio.com.br/foto-edson-egilio.jpg" 
+                    <img src="foto-edson-egilio.jpg" 
                          alt="Edson Egilio" 
-                         class="w-full rounded-2xl shadow-2xl">
+                         class="w-full rounded-2xl shadow-2xl"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <!-- Fallback se a imagem não carregar -->
+                    <div class="w-full h-96 rounded-2xl shadow-2xl bg-gradient-to-br from-brand-blue to-brand-blueDark flex items-center justify-center text-white" style="display:none;">
+                        <div class="text-center">
+                            <div class="text-6xl font-bold mb-2">EE</div>
+                            <div class="text-sm">Edson Egilio</div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Texto -->
@@ -597,7 +622,7 @@
         </div>
     </section>
 
-    <!-- SEÇÃO: PRODUTOS DIGITAIS (mantidos do site atual) -->
+    <!-- SEÇÃO: PRODUTOS DIGITAIS -->
     <section class="py-16 md:py-24 px-6 bg-brand-nude-50">
         <div class="max-w-6xl mx-auto">
             
@@ -612,9 +637,16 @@
 
             <div class="grid md:grid-cols-2 gap-8">
                 
-                <!-- Card 1: Ebook (mantido do original) -->
+                <!-- Card 1: Ebook -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover">
-                    <div class="h-64 bg-gradient-to-br from-brand-blue to-brand-blueDark"></div>
+                    <!-- Imagem do produto com placeholder -->
+                    <div class="h-64 product-image-placeholder">
+                        <div class="relative z-10 text-center text-white p-8">
+                            <svg class="w-20 h-20 mx-auto mb-4 opacity-80" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                            <h4 class="text-2xl font-bold">E-book de IA</h4>
+                            <p class="text-sm opacity-90 mt-2">60 Prompts Prontos</p>
+                        </div>
+                    </div>
                     <div class="p-8">
                         <div class="inline-flex items-center space-x-2 text-brand-blue font-semibold text-sm uppercase tracking-wide mb-4">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
@@ -648,17 +680,24 @@
                             </div>
                         </div>
                         
-                        <a href="https://pay.kirvano.com/d088cc46-4945-4c98-afdd-52a50efb39b4" 
+                        <a href="https://edsonegilio.com.br/ebook-ia-marketing" 
                            target="_blank"
                            class="block w-full text-center bg-brand-blue text-white py-3 rounded-lg font-semibold hover:bg-brand-blueDark transition-all duration-300">
                             Quero os Prompts
-                        </a>
+                            </a>
                     </div>
                 </div>
 
-                <!-- Card 2: Agente IA (mantido do original) -->
+                <!-- Card 2: Agente IA -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover">
-                    <div class="h-64 bg-gradient-to-br from-brand-gold to-yellow-600"></div>
+                    <!-- Imagem do produto com placeholder -->
+                    <div class="h-64 product-image-placeholder product-image-gold">
+                        <div class="relative z-10 text-center text-white p-8">
+                            <svg class="w-20 h-20 mx-auto mb-4 opacity-90" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                            <h4 class="text-2xl font-bold">Agente de IA</h4>
+                            <p class="text-sm opacity-90 mt-2">Atendimento Inteligente 24/7</p>
+                        </div>
+                    </div>
                     <div class="p-8">
                         <div class="inline-flex items-center space-x-2 text-brand-blue font-semibold text-sm uppercase tracking-wide mb-4">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
@@ -692,7 +731,7 @@
                             </div>
                         </div>
                         
-                        <a href="https://wa.me/5515991220741?text=Olá%2C%20quero%20saber%20mais%20sobre%20o%20Agente%20de%20IA%20Personalizado" 
+                        <a href="https://edsonegilio.com.br/agente-ia" 
                            target="_blank"
                            class="block w-full text-center bg-brand-blue text-white py-3 rounded-lg font-semibold hover:bg-brand-blueDark transition-all duration-300">
                             Quero Meu Agente IA
@@ -784,8 +823,8 @@
                     <h4 class="text-white font-semibold mb-3">Navegação</h4>
                     <ul class="space-y-2 text-sm">
                         <li><a href="#servicos" class="hover:text-white transition-colors">Serviços</a></li>
-                        <li><a href="https://pay.kirvano.com/d088cc46-4945-4c98-afdd-52a50efb39b4" target="_blank" class="hover:text-white transition-colors">E-book de IA</a></li>
-                        <li><a href="https://wa.me/5515991220741?text=Olá%2C%20quero%20saber%20mais%20sobre%20o%20Agente%20de%20IA" target="_blank" class="hover:text-white transition-colors">Agente de IA</a></li>
+                        <li><a href="https://edsonegilio.com.br/ebook-ia-marketing" target="_blank" class="hover:text-white transition-colors">E-book de IA</a></li>
+                        <li><a href="https://edsonegilio.com.br/agente-ia" target="_blank" class="hover:text-white transition-colors">Agente de IA</a></li>
                         <li><a href="https://wa.me/5515991220741" target="_blank" class="hover:text-white transition-colors">Contato</a></li>
                     </ul>
                 </div>
