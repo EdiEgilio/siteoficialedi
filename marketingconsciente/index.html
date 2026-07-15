@@ -119,28 +119,27 @@
             line-height: 1.8;
         }
         
-        .btn-cta {
-            display: inline-block;
-            background: linear-gradient(135deg, #C9A961 0%, #B8954A 100%);
-            color: var(--marrom-escuro);
-            padding: 18px 45px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-decoration: none;
-            border: none;
-            border-radius: 2px;
-            cursor: pointer;
-            transition: all 0.35s ease;
-            box-shadow: 0 4px 15px rgba(201, 169, 97, 0.3);
+        /* Centralização do Beehiiv */
+        .beehiiv-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
         
-        .btn-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(201, 169, 97, 0.5);
-            background: linear-gradient(135deg, #D4AF37 0%, #C9A961 100%);
+        .beehiiv-wrapper > div,
+        .beehiiv-wrapper iframe {
+            width: 100% !important;
+            max-width: 600px !important;
+            margin: 0 auto !important;
+        }
+        
+        [data-beehiiv-form] {
+            margin-left: auto !important;
+            margin-right: auto !important;
         }
         
         /* ===================
@@ -459,66 +458,6 @@
         }
         
         /* ===================
-           RESPONSIVIDADE
-        =================== */
-        
-        @media (max-width: 968px) {
-            .entrega-content {
-                grid-template-columns: 1fr;
-                gap: 50px;
-            }
-            
-            .entrega-imagem {
-                order: -1;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hero {
-                min-height: 85vh;
-                padding: 60px 20px;
-            }
-            
-            .section-light,
-            .section-entrega,
-            .section-publico,
-            .section-fechamento {
-                padding: 80px 20px;
-            }
-            
-            .topicos-grid,
-            .cards-publico {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-            
-            .hero-title {
-                line-height: 1.25;
-            }
-            
-            .hero-title .script,
-            .hero-title .destaque {
-                display: block;
-                margin: 10px 0;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .btn-cta {
-                width: 100%;
-                padding: 18px 25px;
-            }
-            
-            .card-numero {
-                font-size: 70px;
-            }
-            
-            .topico-card,
-            .card-publico {
-                padding: 35px 25px;
-            }
-        }
-        /* ===================
            RODAPÉ
         =================== */
         
@@ -576,7 +515,50 @@
             font-weight: 300;
         }
         
+        /* ===================
+           RESPONSIVIDADE
+        =================== */
+        
+        @media (max-width: 968px) {
+            .entrega-content {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            
+            .entrega-imagem {
+                order: -1;
+            }
+        }
+        
         @media (max-width: 768px) {
+            .hero {
+                min-height: 85vh;
+                padding: 60px 20px;
+            }
+            
+            .section-light,
+            .section-entrega,
+            .section-publico,
+            .section-fechamento {
+                padding: 80px 20px;
+            }
+            
+            .topicos-grid,
+            .cards-publico {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .hero-title {
+                line-height: 1.25;
+            }
+            
+            .hero-title .script,
+            .hero-title .destaque {
+                display: block;
+                margin: 10px 0;
+            }
+            
             .footer {
                 padding: 40px 20px 30px;
             }
@@ -588,6 +570,17 @@
             
             .footer-legal {
                 font-size: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .card-numero {
+                font-size: 70px;
+            }
+            
+            .topico-card,
+            .card-publico {
+                padding: 35px 25px;
             }
         }
     </style>
@@ -613,26 +606,9 @@
             </p>
             
             <div class="beehiiv-wrapper">
-    <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="f0ab0042-1518-4a8d-9d3a-06d485747756"></script>
-</div>
-
-<style>
-.beehiiv-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
-
-.beehiiv-wrapper > div {
-    width: 100% !important;
-    max-width: 600px !important;
-    margin: 0 auto !important;
-}
-</style>
+                <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="f0ab0042-1518-4a8d-9d3a-06d485747756"></script>
+            </div>
+        </div>
     </section>
     
     <!-- ============================================
@@ -713,11 +689,15 @@
                     <li>Reflexões profundas que geram ressonância, não apenas conclusões fechadas.</li>
                 </ul>
                 
-                <div style="display: flex; justify-content: center; width: 100%; margin: 40px 0;">
-    <div style="display: inline-block;">
-        <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="f0ab0042-1518-4a8d-9d3a-06d485747756"></script>
-    </div>
-</div>
+                <div class="beehiiv-wrapper">
+                    <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="f0ab0042-1518-4a8d-9d3a-06d485747756"></script>
+                </div>
+            </div>
+            
+            <div class="entrega-imagem">
+                <img src="assets/images/newsletter-mockup.jpg" alt="Newsletter Marketing Consciente">
+            </div>
+        </div>
     </section>
     
     <!-- ============================================
@@ -780,11 +760,12 @@
                 negócios e consciência, você acaba de encontrar o seu lugar.
             </p>
             
-            <div style="max-width: 600px; margin: 40px auto;">
-    <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="f0ab0042-1518-4a8d-9d3a-06d485747756"></script>
-</div>
+            <div class="beehiiv-wrapper">
+                <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="f0ab0042-1518-4a8d-9d3a-06d485747756"></script>
+            </div>
         </div>
     </section>
+    
     <!-- ============================================
          RODAPÉ
     ============================================ -->
@@ -802,5 +783,6 @@
             </p>
         </div>
     </footer>
+
 </body>
 </html>
