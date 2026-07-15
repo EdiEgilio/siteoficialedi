@@ -86,14 +86,15 @@
             font-weight: 800;
             font-size: 40px;
             color: var(--branco);
-            line-height: 1.3;
+            line-height: 1.1;
             margin-bottom: 35px;
             letter-spacing: 0.5px;
         }
         
         .hero-title .linha {
             display: block;
-            margin: 5px 0;
+            margin: 0;
+            line-height: 1.1;
         }
         
         .hero-title .script {
@@ -102,8 +103,8 @@
             font-weight: 400;
             color: var(--dourado);
             display: block;
-            line-height: 1.2;
-            margin: 12px 0;
+            line-height: 1;
+            margin: 6px 0;
         }
         
         .hero-title .destaque {
@@ -112,6 +113,7 @@
             font-weight: 900;
             display: block;
             letter-spacing: 1px;
+            line-height: 1.1;
         }
         
         .hero-subtitle {
@@ -555,6 +557,72 @@
         }
         
         /* ===================
+           AJUSTES FINAIS
+        =================== */
+        
+        /* Reduzir MAIS o formulário no mobile */
+        @media (max-width: 768px) {
+            .beehiiv-wrapper {
+                margin: 35px auto 0;
+                padding: 0 10px;
+            }
+            
+            /* Formulário 25% menor */
+            .beehiiv-wrapper iframe,
+            .beehiiv-wrapper > div {
+                max-width: 100% !important;
+                transform: scale(0.75);
+                transform-origin: top center;
+                margin-top: -30px !important;
+            }
+            
+            /* Ajustar entrelinha do título Hero */
+            .hero-title {
+                line-height: 1.05 !important;
+                margin-bottom: 30px;
+            }
+            
+            .hero-title .linha {
+                margin: 0 !important;
+            }
+            
+            .hero-title .script {
+                margin: 4px 0 !important;
+                line-height: 0.95 !important;
+            }
+            
+            .hero-title .destaque {
+                margin: 0 !important;
+                line-height: 1 !important;
+            }
+        }
+        
+        /* Estilizar formulário Beehiiv */
+        [data-beehiiv-form] {
+            background: rgba(255,255,255,0.95) !important;
+            border-radius: 8px !important;
+            padding: 20px 18px !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important;
+        }
+        
+        [data-beehiiv-form] input {
+            font-size: 14px !important;
+            padding: 11px !important;
+            margin-bottom: 10px !important;
+        }
+        
+        [data-beehiiv-form] button {
+            background: linear-gradient(135deg, #C9A961 0%, #B8954A 100%) !important;
+            color: #2B1810 !important;
+            font-weight: 700 !important;
+            font-size: 13px !important;
+            padding: 13px 28px !important;
+            border-radius: 4px !important;
+            text-transform: uppercase !important;
+            letter-spacing: 1px !important;
+        }
+        
+        /* ===================
            RESPONSIVIDADE
         =================== */
         
@@ -771,7 +839,7 @@
             
             <p class="fechamento-final">
                 Se você busca um espaço de intimidade respeitosa para refletir sobre marketing, 
-                negócios e consciência, você acaba de encontrou o seu lugar.
+                negócios e consciência, você acaba de encontrar o seu lugar.
             </p>
             
             <div class="beehiiv-wrapper">
