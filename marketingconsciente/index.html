@@ -518,6 +518,78 @@
                 padding: 35px 25px;
             }
         }
+        /* ===================
+           RODAPÉ
+        =================== */
+        
+        .footer {
+            background: var(--marrom-escuro);
+            color: var(--bege);
+            padding: 60px 20px 40px;
+            text-align: center;
+            border-top: 1px solid rgba(201, 169, 97, 0.2);
+        }
+        
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .footer-text {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: var(--bege);
+            font-weight: 300;
+        }
+        
+        .footer-text strong {
+            color: var(--dourado);
+            font-weight: 600;
+        }
+        
+        .footer-text a {
+            color: var(--dourado);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-text a:hover {
+            color: var(--branco);
+            text-decoration: underline;
+        }
+        
+        .footer-year {
+            font-size: 13px;
+            color: rgba(245, 241, 232, 0.6);
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+        
+        .footer-legal {
+            font-size: 11px;
+            line-height: 1.6;
+            color: rgba(245, 241, 232, 0.5);
+            max-width: 700px;
+            margin: 0 auto;
+            padding-top: 20px;
+            border-top: 1px solid rgba(201, 169, 97, 0.1);
+            font-weight: 300;
+        }
+        
+        @media (max-width: 768px) {
+            .footer {
+                padding: 40px 20px 30px;
+            }
+            
+            .footer-text {
+                font-size: 13px;
+                line-height: 1.8;
+            }
+            
+            .footer-legal {
+                font-size: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -713,6 +785,22 @@
 </div>
         </div>
     </section>
-    
+    <!-- ============================================
+         RODAPÉ
+    ============================================ -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">
+                <strong>Marketing Consciente</strong> | Todos os Direitos Reservados | 
+                Produzido por <a href="https://edsonegilio.com.br" target="_blank">Edson Egilio</a>
+            </p>
+            <p class="footer-year">2025</p>
+            <p class="footer-legal">
+                Este site utiliza cookies para melhorar sua experiência e analisar o tráfego. 
+                Ao continuar navegando, você concorda com nossa política de privacidade. 
+                Não compartilhamos seus dados com terceiros.
+            </p>
+        </div>
+    </footer>
 </body>
 </html>
