@@ -557,23 +557,103 @@
         }
         
         /* ===================
-           AJUSTES FINAIS
+           AJUSTES FINAIS - FORMULÁRIO MINIMALISTA
         =================== */
         
-        /* Reduzir MAIS o formulário no mobile */
+        /* Wrapper do formulário */
+        .beehiiv-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 500px;
+            margin: 45px auto 0;
+            padding: 0 20px;
+        }
+        
+        .beehiiv-wrapper > div,
+        .beehiiv-wrapper iframe {
+            width: 100% !important;
+            max-width: 500px !important;
+            margin: 0 auto !important;
+        }
+        
+        /* Remover fundos e bordas do Beehiiv */
+        [data-beehiiv-form] {
+            background: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+            box-shadow: none !important;
+        }
+        
+        /* Estilizar inputs - layout inline minimalista */
+        [data-beehiiv-form] input[type="email"],
+        [data-beehiiv-form] input[type="text"] {
+            background: rgba(255, 255, 255, 0.95) !important;
+            border: 1px solid rgba(201, 169, 97, 0.3) !important;
+            border-radius: 4px !important;
+            padding: 14px 16px !important;
+            font-size: 15px !important;
+            font-family: 'Montserrat', sans-serif !important;
+            color: var(--preto) !important;
+            margin: 0 0 12px 0 !important;
+            width: 100% !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        [data-beehiiv-form] input[type="email"]:focus,
+        [data-beehiiv-form] input[type="text"]:focus {
+            border-color: var(--dourado) !important;
+            outline: none !important;
+            box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.15) !important;
+        }
+        
+        [data-beehiiv-form] input::placeholder {
+            color: rgba(26, 26, 26, 0.5) !important;
+            font-weight: 300 !important;
+        }
+        
+        /* Botão de inscrição */
+        [data-beehiiv-form] button,
+        [data-beehiiv-form] button[type="submit"] {
+            background: linear-gradient(135deg, #C9A961 0%, #B8954A 100%) !important;
+            color: #2B1810 !important;
+            font-family: 'Montserrat', sans-serif !important;
+            font-weight: 700 !important;
+            font-size: 13px !important;
+            padding: 15px 35px !important;
+            border: none !important;
+            border-radius: 4px !important;
+            text-transform: uppercase !important;
+            letter-spacing: 1.5px !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            width: 100% !important;
+            margin-top: 8px !important;
+        }
+        
+        [data-beehiiv-form] button:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 20px rgba(201, 169, 97, 0.4) !important;
+        }
+        
+        /* Ajustes mobile */
         @media (max-width: 768px) {
             .beehiiv-wrapper {
-                margin: 35px auto 0;
-                padding: 0 10px;
+                margin: 40px auto 0;
+                padding: 0 15px;
+                max-width: 100%;
             }
             
-            /* Formulário 25% menor */
-            .beehiiv-wrapper iframe,
-            .beehiiv-wrapper > div {
-                max-width: 100% !important;
-                transform: scale(0.75);
-                transform-origin: top center;
-                margin-top: -30px !important;
+            [data-beehiiv-form] input[type="email"],
+            [data-beehiiv-form] input[type="text"] {
+                font-size: 16px !important;
+                padding: 13px 14px !important;
+            }
+            
+            [data-beehiiv-form] button {
+                font-size: 12px !important;
+                padding: 14px 30px !important;
             }
             
             /* Ajustar entrelinha do título Hero */
@@ -597,29 +677,29 @@
             }
         }
         
-        /* Estilizar formulário Beehiiv */
-        [data-beehiiv-form] {
-            background: rgba(255,255,255,0.95) !important;
-            border-radius: 8px !important;
-            padding: 20px 18px !important;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important;
-        }
-        
-        [data-beehiiv-form] input {
-            font-size: 14px !important;
-            padding: 11px !important;
-            margin-bottom: 10px !important;
-        }
-        
-        [data-beehiiv-form] button {
-            background: linear-gradient(135deg, #C9A961 0%, #B8954A 100%) !important;
-            color: #2B1810 !important;
-            font-weight: 700 !important;
-            font-size: 13px !important;
-            padding: 13px 28px !important;
-            border-radius: 4px !important;
-            text-transform: uppercase !important;
-            letter-spacing: 1px !important;
+        /* Versão inline para desktop (opcional) */
+        @media (min-width: 769px) {
+            [data-beehiiv-form] {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: 10px !important;
+                align-items: flex-start !important;
+            }
+            
+            [data-beehiiv-form] input[type="email"] {
+                flex: 1 1 45% !important;
+                margin: 0 !important;
+            }
+            
+            [data-beehiiv-form] input[type="text"] {
+                flex: 1 1 45% !important;
+                margin: 0 !important;
+            }
+            
+            [data-beehiiv-form] button {
+                flex: 1 1 100% !important;
+                margin-top: 10px !important;
+            }
         }
         
         /* ===================
