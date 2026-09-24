@@ -1,1 +1,636 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YL7MBE963T"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-YL7MBE963T');
+    </script>
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Jurídico com IA sob Medida para Escritórios | Edson Egilio</title>
+    <meta name="description" content="Sistema jurídico com inteligência artificial desenvolvido sob medida para o seu escritório: monitora publicações, organiza processos e redige minutas com IA, sem jamais inventar uma citação que não possa ser rastreada até a fonte oficial.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:title" content="Um sistema jurídico com inteligência artificial, desenvolvido sob medida para o seu escritório">
+    <meta property="og:description" content="Não é uma assinatura de software genérico. É um sistema próprio, construído para a rotina do seu escritório.">
+    <meta property="og:image" content="https://edsonegilio.com.br/sistemajuridico/assets/images/og-image.jpg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#142B4B',
+                            navyDark: '#0D1D33',
+                            gold: '#B08D3E',
+                            goldLight: '#D9C48A',
+                            ivory: '#F8F5EF',
+                            ivoryDark: '#EFE9DD',
+                            graphite: '#23262B',
+                            green: '#4C7A5E',
+                            greenBg: '#E9F1EC',
+                            terracotta: '#B5504A',
+                            terracottaBg: '#F5E9E8',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Source Serif 4"', 'Georgia', 'serif'],
+                        sans: ['"Public Sans"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Public Sans', system-ui, sans-serif; }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1.is-visible { transition-delay: 0.12s; }
+        .reveal-delay-2.is-visible { transition-delay: 0.24s; }
+        .reveal-delay-3.is-visible { transition-delay: 0.36s; }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .reveal { opacity: 1; transform: none; transition: none; }
+        }
+
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+
+        .img-placeholder {
+            background: repeating-linear-gradient(135deg, #EFE9DD, #EFE9DD 10px, #E6DFCF 10px, #E6DFCF 20px);
+        }
+    </style>
+</head>
+<body class="bg-brand-ivory text-brand-graphite antialiased">
+
+    <!-- ===================== HEADER ===================== -->
+    <header class="fixed top-0 inset-x-0 z-50 bg-brand-ivory/90 backdrop-blur-sm border-b border-brand-ivoryDark">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+            <a href="#topo" class="font-serif font-semibold text-lg text-brand-navy">
+                Edson Egilio <span class="text-brand-gold">·</span> Sistema Jurídico
+            </a>
+            <a href="https://wa.me/5515991220741?text=Ol%C3%A1%2C%20quero%20conversar%20sobre%20um%20sistema%20jur%C3%ADdico%20com%20IA%20para%20o%20meu%20escrit%C3%B3rio"
+               target="_blank" rel="noopener"
+               class="inline-flex items-center gap-2 bg-brand-navy hover:bg-brand-navyDark text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition-colors">
+                <i data-lucide="message-circle" class="w-4 h-4"></i>
+                <span class="hidden sm:inline">Conversar sobre o meu escritório</span>
+                <span class="sm:hidden">Conversar</span>
+            </a>
+        </div>
+    </header>
+
+    <main id="topo" class="pt-16">
+
+        <!-- ===================== HERO ===================== -->
+        <section class="relative overflow-hidden">
+            <div class="max-w-6xl mx-auto px-5 sm:px-8 py-14 sm:py-20 lg:py-28 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+                <div class="reveal">
+                    <p class="text-brand-gold font-semibold tracking-wide uppercase text-xs sm:text-sm mb-4">
+                        Desenvolvimento sob encomenda &middot; não é licença compartilhada
+                    </p>
+                    <h1 class="font-serif font-semibold text-3xl sm:text-4xl lg:text-5xl leading-tight text-brand-navy">
+                        Um sistema jurídico com inteligência artificial, desenvolvido sob medida para o seu escritório.
+                    </h1>
+                    <p class="mt-6 text-base sm:text-lg leading-relaxed text-brand-graphite/85">
+                        Não é uma assinatura de software genérico. É um sistema próprio, construído para a
+                        rotina do seu escritório — que monitora publicações, organiza processos e redige
+                        minutas de peças jurídicas com IA, sem jamais inventar uma citação que não possa ser
+                        rastreada até a fonte oficial, além de você poder incluir outras necessidades/rotinas
+                        exclusivas do seu escritório.
+                    </p>
+                    <div class="mt-8">
+                        <a href="https://wa.me/5515991220741?text=Ol%C3%A1%2C%20quero%20conversar%20sobre%20um%20sistema%20jur%C3%ADdico%20com%20IA%20para%20o%20meu%20escrit%C3%B3rio"
+                           target="_blank" rel="noopener"
+                           class="inline-flex items-center gap-2 bg-brand-gold hover:bg-brand-gold/90 text-brand-navyDark font-semibold px-6 py-3.5 rounded-lg shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5">
+                            <i data-lucide="message-circle" class="w-5 h-5"></i>
+                            Conversar sobre o meu escritório
+                        </a>
+                    </div>
+                </div>
+
+                <div class="reveal reveal-delay-1">
+                    <!-- IMAGEM: hero-visual -->
+                    <div class="img-placeholder aspect-[4/3] lg:aspect-square rounded-2xl border border-brand-ivoryDark flex items-center justify-center text-brand-graphite/40 text-sm">
+                        <picture>
+                            <source media="(min-width: 1024px)" srcset="assets/images/hero-desktop.webp">
+                            <img src="assets/images/hero-mobile.webp" alt="Ilustração do sistema jurídico com IA em uso no escritório"
+                                 loading="eager" class="w-full h-full object-cover rounded-2xl"
+                                 onerror="this.closest('picture').style.display='none'">
+                        </picture>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== COMO ISSO FUNCIONA (transição) ===================== -->
+        <section class="bg-brand-navy">
+            <div class="max-w-4xl mx-auto px-5 sm:px-8 py-10 sm:py-14">
+                <p class="reveal text-white/90 text-center text-base sm:text-lg leading-relaxed">
+                    Este não é um software que você assina e usa do jeito que vem. É um sistema desenvolvido
+                    (do zero) especificamente para o seu escritório, entregue com uma base sólida de
+                    funcionalidades já testadas em operação real — e configurado, desde o primeiro dia, para
+                    a forma como o seu escritório efetivamente trabalha.
+                </p>
+            </div>
+        </section>
+
+        <!-- ===================== O PROBLEMA ===================== -->
+        <section class="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+            <h2 class="reveal font-serif font-semibold text-2xl sm:text-3xl lg:text-4xl text-brand-navy text-center max-w-3xl mx-auto">
+                O trabalho que consome seu escritório sem gerar valor
+            </h2>
+
+            <div class="mt-12 grid sm:grid-cols-3 gap-6 lg:gap-8">
+                <div class="reveal bg-white rounded-2xl border border-brand-ivoryDark p-6 sm:p-7 shadow-sm">
+                    <div class="w-11 h-11 rounded-lg bg-brand-terracottaBg flex items-center justify-center mb-5">
+                        <i data-lucide="mail-warning" class="w-5 h-5 text-brand-terracotta"></i>
+                    </div>
+                    <h3 class="font-serif font-semibold text-lg text-brand-navy mb-2">Publicações perdidas no e-mail.</h3>
+                    <p class="text-sm sm:text-base text-brand-graphite/80 leading-relaxed">
+                        Dezenas de e-mails de tribunais chegam por dia, misturados com ruído. Um prazo
+                        perdido por leitura manual é um risco real — e recorrente.
+                    </p>
+                </div>
+
+                <div class="reveal reveal-delay-1 bg-white rounded-2xl border border-brand-ivoryDark p-6 sm:p-7 shadow-sm">
+                    <div class="w-11 h-11 rounded-lg bg-brand-terracottaBg flex items-center justify-center mb-5">
+                        <i data-lucide="clock" class="w-5 h-5 text-brand-terracotta"></i>
+                    </div>
+                    <h3 class="font-serif font-semibold text-lg text-brand-navy mb-2">Horas redigindo a mesma peça.</h3>
+                    <p class="text-sm sm:text-base text-brand-graphite/80 leading-relaxed">
+                        Peças repetitivas redigidas do zero, ou copiadas de modelos antigos sem
+                        padronização — tempo do advogado gasto em trabalho mecânico.
+                    </p>
+                </div>
+
+                <div class="reveal reveal-delay-2 bg-white rounded-2xl border border-brand-ivoryDark p-6 sm:p-7 shadow-sm">
+                    <div class="w-11 h-11 rounded-lg bg-brand-terracottaBg flex items-center justify-center mb-5">
+                        <i data-lucide="alert-triangle" class="w-5 h-5 text-brand-terracotta"></i>
+                    </div>
+                    <h3 class="font-serif font-semibold text-lg text-brand-navy mb-2">O risco da IA genérica.</h3>
+                    <p class="text-sm sm:text-base text-brand-graphite/80 leading-relaxed">
+                        Ferramentas de IA de uso geral podem citar jurisprudência e artigo de lei que não
+                        existem — um erro que chega ao cliente e ao tribunal.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== A BASE QUE JÁ ENTREGAMOS ===================== -->
+        <section class="bg-white border-y border-brand-ivoryDark">
+            <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+                <h2 class="reveal font-serif font-semibold text-2xl sm:text-3xl lg:text-4xl text-brand-navy text-center max-w-3xl mx-auto">
+                    Isso é o que já vem pronto e testado — o ponto de partida do seu sistema, não o limite dele.
+                </h2>
+
+                <div class="mt-12 grid lg:grid-cols-3 gap-6 lg:gap-8">
+                    <div class="reveal bg-brand-ivory rounded-2xl p-6 sm:p-7">
+                        <div class="w-11 h-11 rounded-lg bg-brand-navy flex items-center justify-center mb-5">
+                            <i data-lucide="inbox" class="w-5 h-5 text-brand-goldLight"></i>
+                        </div>
+                        <h3 class="font-serif font-semibold text-xl text-brand-navy mb-3">Triagem inteligente de publicações</h3>
+                        <p class="text-sm sm:text-base text-brand-graphite/80 leading-relaxed">
+                            O sistema acompanha os canais que o seu escritório já usa e nunca deixa uma
+                            publicação passar despercebida: e-mail dedicado monitorado continuamente,
+                            integração com fontes oficiais como a API de intimações da AASP, e upload manual
+                            quando necessário. Um mecanismo de verificação cruzada evita que a mesma
+                            publicação seja processada duas vezes — e nunca descarta um caso duvidoso sem
+                            confirmação humana.
+                        </p>
+                    </div>
+
+                    <div class="reveal reveal-delay-1 bg-brand-ivory rounded-2xl p-6 sm:p-7">
+                        <div class="w-11 h-11 rounded-lg bg-brand-navy flex items-center justify-center mb-5">
+                            <i data-lucide="scale" class="w-5 h-5 text-brand-goldLight"></i>
+                        </div>
+                        <h3 class="font-serif font-semibold text-xl text-brand-navy mb-3">Geração de peças sem alucinação</h3>
+                        <p class="text-sm sm:text-base text-brand-graphite/80 leading-relaxed">
+                            A IA redige minutas com base nos modelos do próprio escritório e busca
+                            automaticamente em fontes oficiais — tribunais, STF, STJ, CARF, Receita Federal,
+                            Planalto. Um trecho sem fonte confiável nunca é preenchido por conta própria:
+                            fica bloqueado, sinalizado, esperando o advogado completar. Toda peça mostra
+                            exatamente quais fontes foram usadas.
+                        </p>
+                    </div>
+
+                    <div class="reveal reveal-delay-2 bg-brand-ivory rounded-2xl p-6 sm:p-7">
+                        <div class="w-11 h-11 rounded-lg bg-brand-navy flex items-center justify-center mb-5">
+                            <i data-lucide="layout-dashboard" class="w-5 h-5 text-brand-goldLight"></i>
+                        </div>
+                        <h3 class="font-serif font-semibold text-xl text-brand-navy mb-3">Dashboard e gestão</h3>
+                        <p class="text-sm sm:text-base text-brand-graphite/80 leading-relaxed">
+                            Um painel único com prazos, status e histórico de cada processo. Acesso
+                            protegido por login individual, com controle de permissão por usuário.
+                            Versionamento completo das peças geradas e aprendizado contínuo a partir das
+                            correções do próprio escritório.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== O DIFERENCIAL ===================== -->
+        <section class="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+            <h2 class="reveal font-serif font-semibold text-2xl sm:text-3xl lg:text-4xl text-brand-navy text-center max-w-3xl mx-auto">
+                A diferença entre IA que ajuda e IA que expõe seu escritório a risco
+            </h2>
+            <p class="reveal mt-6 text-base sm:text-lg text-brand-graphite/85 text-center max-w-3xl mx-auto leading-relaxed">
+                Ferramentas de IA genéricas priorizam sempre entregar uma resposta — mesmo quando isso
+                significa inventar uma jurisprudência ou um artigo que não existe. O seu sistema é construído
+                com a regra oposta: quando não há fonte oficial confiável, ele bloqueia o trecho em vez de
+                arriscar. Nenhuma peça sai da fila de geração com uma pendência escondida.
+            </p>
+
+            <div class="mt-12 grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div class="reveal bg-brand-terracottaBg border border-brand-terracotta/20 rounded-2xl p-6 sm:p-7">
+                    <div class="flex items-center gap-2 mb-4">
+                        <i data-lucide="x-circle" class="w-5 h-5 text-brand-terracotta"></i>
+                        <span class="text-xs font-semibold uppercase tracking-wide text-brand-terracotta">IA genérica</span>
+                    </div>
+                    <p class="font-mono text-sm leading-relaxed text-brand-graphite/90">
+                        "Conforme entendimento consolidado do STJ no REsp 1.234.567..."
+                    </p>
+                    <p class="mt-4 text-xs text-brand-graphite/60">
+                        Número de processo inexistente, gerado por previsão estatística de texto.
+                    </p>
+                </div>
+
+                <div class="reveal reveal-delay-1 bg-brand-greenBg border border-brand-green/20 rounded-2xl p-6 sm:p-7">
+                    <div class="flex items-center gap-2 mb-4">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-brand-green"></i>
+                        <span class="text-xs font-semibold uppercase tracking-wide text-brand-green">Este sistema</span>
+                    </div>
+                    <p class="font-mono text-sm leading-relaxed text-brand-graphite/90">
+                        "[[BLOQUEIO_1 — jurisprudência específica não confirmada em fonte oficial. Advogado:
+                        complete manualmente ou aprove a remoção]]"
+                    </p>
+                    <p class="mt-4 text-xs text-brand-graphite/60">
+                        Nenhuma fonte confiável, nenhuma invenção — o sistema avisa e espera revisão.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== FEITO SOB MEDIDA (destaque) ===================== -->
+        <section class="bg-brand-navy relative overflow-hidden">
+            <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+                <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+                    <div class="reveal">
+                        <p class="text-brand-gold font-semibold tracking-wide uppercase text-xs sm:text-sm mb-4">
+                            O coração da proposta
+                        </p>
+                        <h2 class="font-serif font-semibold text-2xl sm:text-3xl lg:text-4xl text-white mb-6">
+                            O seu escritório, não um modelo genérico
+                        </h2>
+                        <p class="text-white/85 leading-relaxed mb-8">
+                            A base acima é só o ponto de partida. O sistema é configurado junto com você, para
+                            a forma como o seu escritório realmente funciona:
+                        </p>
+
+                        <ul class="space-y-5">
+                            <li class="flex gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-brand-gold shrink-0 mt-0.5"></i>
+                                <p class="text-white/90 text-sm sm:text-base"><strong class="text-white">Área de atuação.</strong> Tributário, cível, trabalhista, previdenciário — os modelos de peça e as fontes de consulta são montados para a sua prática.</p>
+                            </li>
+                            <li class="flex gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-brand-gold shrink-0 mt-0.5"></i>
+                                <p class="text-white/90 text-sm sm:text-base"><strong class="text-white">Fontes de publicação.</strong> Integração com o sistema de tribunal, associação de classe ou plataforma que o seu escritório já usa.</p>
+                            </li>
+                            <li class="flex gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-brand-gold shrink-0 mt-0.5"></i>
+                                <p class="text-white/90 text-sm sm:text-base"><strong class="text-white">Regras de triagem.</strong> Filtros e prioridades ajustados aos remetentes e ao volume real da sua caixa de entrada.</p>
+                            </li>
+                            <li class="flex gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-brand-gold shrink-0 mt-0.5"></i>
+                                <p class="text-white/90 text-sm sm:text-base"><strong class="text-white">Fluxo de aprovação.</strong> Quem revisa, quem aprova, quem assina — no formato que já existe no seu escritório, não um fluxo importado de fora.</p>
+                            </li>
+                            <li class="flex gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-brand-gold shrink-0 mt-0.5"></i>
+                                <p class="text-white/90 text-sm sm:text-base"><strong class="text-white">Crescimento contínuo.</strong> Conforme a necessidade do escritório muda, o sistema evolui junto — não é uma versão fechada, entregue uma vez.</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="reveal reveal-delay-1">
+                        <!-- IMAGEM: sob-medida-visual -->
+                        <div class="img-placeholder aspect-[4/3] rounded-2xl border border-white/10 flex items-center justify-center">
+                            <picture>
+                                <source media="(min-width: 1024px)" srcset="assets/images/sob-medida-desktop.webp">
+                                <img src="assets/images/sob-medida-mobile.webp" alt="Configuração do sistema junto ao escritório de advocacia"
+                                     loading="lazy" class="w-full h-full object-cover rounded-2xl"
+                                     onerror="this.closest('picture').style.display='none'">
+                            </picture>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== COMO FUNCIONA NA PRÁTICA ===================== -->
+        <section class="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+            <h2 class="reveal font-serif font-semibold text-2xl sm:text-3xl lg:text-4xl text-brand-navy text-center max-w-3xl mx-auto">
+                Como funciona na prática
+            </h2>
+
+            <div class="mt-14 relative">
+                <!-- linha conectora -->
+                <div class="hidden lg:block absolute top-6 left-0 right-0 h-px bg-brand-ivoryDark" aria-hidden="true"></div>
+                <div class="lg:hidden absolute top-0 bottom-0 left-6 w-px bg-brand-ivoryDark" aria-hidden="true"></div>
+
+                <div class="grid lg:grid-cols-4 gap-8 lg:gap-6">
+                    <div class="reveal relative flex lg:flex-col gap-4 lg:gap-0">
+                        <div class="relative z-10 w-12 h-12 shrink-0 rounded-full bg-brand-navy text-white font-serif font-semibold flex items-center justify-center">1</div>
+                        <div class="lg:mt-5">
+                            <h3 class="font-serif font-semibold text-lg text-brand-navy mb-1.5">Publicação chega</h3>
+                            <p class="text-sm text-brand-graphite/75 leading-relaxed">Por e-mail dedicado, integração oficial ou upload manual.</p>
+                        </div>
+                    </div>
+                    <div class="reveal reveal-delay-1 relative flex lg:flex-col gap-4 lg:gap-0">
+                        <div class="relative z-10 w-12 h-12 shrink-0 rounded-full bg-brand-navy text-white font-serif font-semibold flex items-center justify-center">2</div>
+                        <div class="lg:mt-5">
+                            <h3 class="font-serif font-semibold text-lg text-brand-navy mb-1.5">IA organiza os dados</h3>
+                            <p class="text-sm text-brand-graphite/75 leading-relaxed">Número de processo, tribunal, prazo e resumo extraídos automaticamente, sem duplicidade.</p>
+                        </div>
+                    </div>
+                    <div class="reveal reveal-delay-2 relative flex lg:flex-col gap-4 lg:gap-0">
+                        <div class="relative z-10 w-12 h-12 shrink-0 rounded-full bg-brand-navy text-white font-serif font-semibold flex items-center justify-center">3</div>
+                        <div class="lg:mt-5">
+                            <h3 class="font-serif font-semibold text-lg text-brand-navy mb-1.5">Advogado solicita a peça</h3>
+                            <p class="text-sm text-brand-graphite/75 leading-relaxed">Escolhe o tipo de peça e os modelos do escritório a usar como base.</p>
+                        </div>
+                    </div>
+                    <div class="reveal reveal-delay-3 relative flex lg:flex-col gap-4 lg:gap-0">
+                        <div class="relative z-10 w-12 h-12 shrink-0 rounded-full bg-brand-gold text-brand-navyDark font-serif font-semibold flex items-center justify-center">4</div>
+                        <div class="lg:mt-5">
+                            <h3 class="font-serif font-semibold text-lg text-brand-navy mb-1.5">Minuta com fontes rastreáveis</h3>
+                            <p class="text-sm text-brand-graphite/75 leading-relaxed">Peça redigida, fontes listadas, pendências sinalizadas, pronta para revisão final.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== FAQ ===================== -->
+        <section class="bg-white border-y border-brand-ivoryDark">
+            <div class="max-w-3xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+                <h2 class="reveal font-serif font-semibold text-2xl sm:text-3xl lg:text-4xl text-brand-navy text-center mb-12">
+                    Perguntas frequentes
+                </h2>
+
+                <div class="space-y-3">
+                    <details class="reveal group bg-brand-ivory rounded-xl px-5 sm:px-6 py-1">
+                        <summary class="flex items-center justify-between gap-4 py-4 cursor-pointer font-serif font-semibold text-brand-navy">
+                            O sistema é meu, ou é um serviço que eu assino?
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-gold shrink-0 transition-transform group-open:rotate-180"></i>
+                        </summary>
+                        <p class="pb-5 text-sm sm:text-base text-brand-graphite/80 leading-relaxed">
+                            É um sistema desenvolvido para o seu escritório, não uma licença de uso
+                            compartilhado. A base de funcionalidades é a mesma para todos os projetos, mas a
+                            configuração, os modelos e as integrações são construídos especificamente para a
+                            sua operação.
+                        </p>
+                    </details>
+
+                    <details class="reveal group bg-brand-ivory rounded-xl px-5 sm:px-6 py-1">
+                        <summary class="flex items-center justify-between gap-4 py-4 cursor-pointer font-serif font-semibold text-brand-navy">
+                            A IA vai substituir meus advogados?
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-gold shrink-0 transition-transform group-open:rotate-180"></i>
+                        </summary>
+                        <p class="pb-5 text-sm sm:text-base text-brand-graphite/80 leading-relaxed">
+                            Não. O sistema cuida do trabalho repetitivo — triagem, organização e primeira
+                            minuta. A decisão jurídica, a estratégia e a revisão final continuam sempre com o
+                            advogado.
+                        </p>
+                    </details>
+
+                    <details class="reveal group bg-brand-ivory rounded-xl px-5 sm:px-6 py-1">
+                        <summary class="flex items-center justify-between gap-4 py-4 cursor-pointer font-serif font-semibold text-brand-navy">
+                            E se a IA "inventar" uma jurisprudência?
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-gold shrink-0 transition-transform group-open:rotate-180"></i>
+                        </summary>
+                        <p class="pb-5 text-sm sm:text-base text-brand-graphite/80 leading-relaxed">
+                            É exatamente o que o sistema é desenhado para nunca fazer: sem fonte oficial
+                            confirmada, o trecho fica bloqueado e sinalizado para complementação manual —
+                            nunca preenchido por conta própria.
+                        </p>
+                    </details>
+
+                    <details class="reveal group bg-brand-ivory rounded-xl px-5 sm:px-6 py-1">
+                        <summary class="flex items-center justify-between gap-4 py-4 cursor-pointer font-serif font-semibold text-brand-navy">
+                            Meus dados e os dos meus clientes ficam seguros?
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-gold shrink-0 transition-transform group-open:rotate-180"></i>
+                        </summary>
+                        <p class="pb-5 text-sm sm:text-base text-brand-graphite/80 leading-relaxed">
+                            Sim. Acesso protegido por login individual, permissões por usuário e controle de
+                            acesso a dados em todas as camadas do sistema.
+                        </p>
+                    </details>
+
+                    <details class="reveal group bg-brand-ivory rounded-xl px-5 sm:px-6 py-1">
+                        <summary class="flex items-center justify-between gap-4 py-4 cursor-pointer font-serif font-semibold text-brand-navy">
+                            Funciona só para direito tributário?
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-gold shrink-0 transition-transform group-open:rotate-180"></i>
+                        </summary>
+                        <p class="pb-5 text-sm sm:text-base text-brand-graphite/80 leading-relaxed">
+                            Não. A base já opera com modelos tributários e cíveis, e se adapta à área de
+                            atuação de cada escritório contratante.
+                        </p>
+                    </details>
+
+                    <details class="reveal group bg-brand-ivory rounded-xl px-5 sm:px-6 py-1">
+                        <summary class="flex items-center justify-between gap-4 py-4 cursor-pointer font-serif font-semibold text-brand-navy">
+                            Quanto tempo leva para ficar pronto?
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-gold shrink-0 transition-transform group-open:rotate-180"></i>
+                        </summary>
+                        <p class="pb-5 text-sm sm:text-base text-brand-graphite/80 leading-relaxed">
+                            Varia conforme a complexidade dos modelos e integrações que o seu escritório
+                            precisa. Na conversa inicial, mapeamos o fluxo real do escritório e definimos um
+                            prazo junto com você.
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== CTA FINAL + FORMULÁRIO ===================== -->
+        <section id="contato" class="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="reveal font-serif font-semibold text-2xl sm:text-3xl lg:text-4xl text-brand-navy">
+                    Pronto para ter um sistema jurídico com IA feito para o seu escritório?
+                </h2>
+                <p class="reveal mt-5 text-base sm:text-lg text-brand-graphite/80 leading-relaxed">
+                    Vamos conversar sobre como o seu escritório trabalha hoje e o que faz sentido construir
+                    primeiro.
+                </p>
+                <div class="reveal mt-8">
+                    <a href="https://wa.me/5515991220741?text=Ol%C3%A1%2C%20quero%20agendar%20uma%20conversa%20sobre%20o%20sistema%20jur%C3%ADdico%20com%20IA%20para%20o%20meu%20escrit%C3%B3rio"
+                       target="_blank" rel="noopener"
+                       class="inline-flex items-center gap-2 bg-brand-navy hover:bg-brand-navyDark text-white font-semibold px-6 py-3.5 rounded-lg shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5">
+                        <i data-lucide="calendar" class="w-5 h-5"></i>
+                        Agendar uma conversa pelo WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <div class="reveal max-w-xl mx-auto bg-white rounded-2xl border border-brand-ivoryDark shadow-sm p-6 sm:p-9">
+                <h3 class="font-serif font-semibold text-xl text-brand-navy mb-1">Prefere que a gente te chame?</h3>
+                <p class="text-sm text-brand-graphite/70 mb-6">Deixe seus dados e entramos em contato.</p>
+
+                <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-5">
+                    <input type="hidden" name="access_key" value="SUBSTITUA_PELA_SUA_CHAVE_WEB3FORMS">
+                    <input type="hidden" name="subject" value="Novo contato — Landing Page Sistema Jurídico">
+                    <input type="hidden" name="from_name" value="Site Sistema Jurídico com IA">
+                    <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off">
+
+                    <div>
+                        <label for="nome" class="block text-sm font-semibold text-brand-graphite mb-1.5">Nome</label>
+                        <input type="text" id="nome" name="nome" required
+                               class="w-full rounded-lg border border-brand-ivoryDark bg-brand-ivory px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold">
+                    </div>
+
+                    <fieldset>
+                        <legend class="block text-sm font-semibold text-brand-graphite mb-2">Área(s) de atuação do escritório</legend>
+                        <div class="grid grid-cols-2 gap-2.5">
+                            <label class="flex items-center gap-2 text-sm text-brand-graphite/85">
+                                <input type="checkbox" name="areas_atuacao" value="Tributário" class="rounded border-brand-ivoryDark text-brand-navy focus:ring-brand-gold">
+                                Tributário
+                            </label>
+                            <label class="flex items-center gap-2 text-sm text-brand-graphite/85">
+                                <input type="checkbox" name="areas_atuacao" value="Cível" class="rounded border-brand-ivoryDark text-brand-navy focus:ring-brand-gold">
+                                Cível
+                            </label>
+                            <label class="flex items-center gap-2 text-sm text-brand-graphite/85">
+                                <input type="checkbox" name="areas_atuacao" value="Trabalhista" class="rounded border-brand-ivoryDark text-brand-navy focus:ring-brand-gold">
+                                Trabalhista
+                            </label>
+                            <label class="flex items-center gap-2 text-sm text-brand-graphite/85">
+                                <input type="checkbox" name="areas_atuacao" value="Previdenciário" class="rounded border-brand-ivoryDark text-brand-navy focus:ring-brand-gold">
+                                Previdenciário
+                            </label>
+                            <label class="flex items-center gap-2 text-sm text-brand-graphite/85 col-span-2">
+                                <input type="checkbox" name="areas_atuacao" value="Outro" class="rounded border-brand-ivoryDark text-brand-navy focus:ring-brand-gold">
+                                Outro
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <div>
+                        <label for="email" class="block text-sm font-semibold text-brand-graphite mb-1.5">E-mail</label>
+                        <input type="email" id="email" name="email" required
+                               class="w-full rounded-lg border border-brand-ivoryDark bg-brand-ivory px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold">
+                    </div>
+
+                    <div>
+                        <label for="whatsapp" class="block text-sm font-semibold text-brand-graphite mb-1.5">WhatsApp</label>
+                        <input type="tel" id="whatsapp" name="whatsapp" required placeholder="(00) 00000-0000"
+                               class="w-full rounded-lg border border-brand-ivoryDark bg-brand-ivory px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold">
+                    </div>
+
+                    <button type="submit"
+                            class="w-full inline-flex items-center justify-center gap-2 bg-brand-navy hover:bg-brand-navyDark text-white font-semibold px-6 py-3.5 rounded-lg transition-colors">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                        <span id="formBtnLabel">Enviar meus dados</span>
+                    </button>
+
+                    <p id="formFeedback" class="text-sm text-center hidden" role="status"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="bg-brand-navyDark text-white/60 text-sm">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p>&copy; <span id="ano"></span> Edson Egilio. Todos os direitos reservados.</p>
+            <a href="https://edsonegilio.com.br" class="hover:text-white transition-colors">edsonegilio.com.br</a>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        document.getElementById('ano').textContent = new Date().getFullYear();
+
+        // Animação de entrada ao rolar a página
+        const revealEls = document.querySelectorAll('.reveal');
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            revealEls.forEach((el) => observer.observe(el));
+        } else {
+            revealEls.forEach((el) => el.classList.add('is-visible'));
+        }
+
+        // Envio do formulário de contato via Web3Forms (sem sair da página)
+        const form = document.getElementById('contactForm');
+        const feedback = document.getElementById('formFeedback');
+        const btnLabel = document.getElementById('formBtnLabel');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const submitBtn = form.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            btnLabel.textContent = 'Enviando...';
+            feedback.classList.add('hidden');
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+                const result = await response.json();
+
+                if (response.status === 200) {
+                    feedback.textContent = 'Recebemos seus dados. Em breve entraremos em contato.';
+                    feedback.className = 'text-sm text-center text-brand-green';
+                    form.reset();
+                } else {
+                    throw new Error(result.message || 'Falha no envio');
+                }
+            } catch (error) {
+                feedback.textContent = 'Não foi possível enviar agora. Tente novamente ou fale pelo WhatsApp.';
+                feedback.className = 'text-sm text-center text-brand-terracotta';
+            } finally {
+                feedback.classList.remove('hidden');
+                submitBtn.disabled = false;
+                btnLabel.textContent = 'Enviar meus dados';
+            }
+        });
+    </script>
+</body>
+</html>
