@@ -1,0 +1,15 @@
+{
+  "name": "A Escalação Secreta do Verdão",
+  "short_name": "Escalação",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone"],
+  "orientation": "portrait",
+  "background_color": "#006437",
+  "theme_color": "#006437",
+  "lang": "pt-BR",
+  "icons": [
+    {"src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"}
+  ]
+}

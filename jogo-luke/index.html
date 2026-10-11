@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>A Escalação Secreta do Verdão</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#006437">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Escalação do Verdão">
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./icon.svg">
+<style>
+:root{
+  --verde:#006437; --verde2:#00854a; --verde-esc:#003d22; --ouro:#ffc72c; --ouro2:#e5a800;
+  --branco:#fff; --erro:#ffb4b4; --erro-t:#8a1f1f; --ok:#c9f5d9; --fundo:#eaf7ee;
+  --sat:env(safe-area-inset-top,0px); --sab:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:var(--verde-esc);overflow-x:hidden}
+body{
+  font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif;font-weight:700;font-size:20px;line-height:1.35;
+  color:#10281b;min-height:100vh;min-height:100dvh;
+}
+#wrap{max-width:430px;margin:0 auto;min-height:100vh;min-height:100dvh;background:var(--fundo);position:relative;
+  padding:0 16px calc(96px + var(--sab));overflow-x:hidden}
+#wrap.has-top{padding-top:calc(78px + var(--sat))}
+#wrap.start{background:linear-gradient(180deg,var(--verde) 0%,var(--verde-esc) 100%);color:#fff;padding-top:calc(20px + var(--sat))}
+
+/* topo fixo */
+#top{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:20;
+  background:var(--verde);color:#fff;padding:calc(8px + var(--sat)) 12px 8px;display:none;
+  grid-template-columns:auto 1fr auto;gap:8px;align-items:center;border-bottom:4px solid var(--ouro);box-shadow:0 3px 8px #0004}
+#top.on{display:grid}
+#top .pts{background:var(--ouro);color:var(--verde-esc);border-radius:14px;padding:4px 12px;font-size:22px;white-space:nowrap}
+#top .pts small{font-size:14px;display:block;line-height:1;margin-bottom:1px}
+#top .tit{text-align:center;font-size:20px;line-height:1.1;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;touch-action:manipulation;padding:6px 2px}
+#top .cr{font-size:20px;text-align:right;white-space:nowrap}
+#top .cr small{display:block;font-size:14px;line-height:1}
+#snd{position:fixed;right:10px;bottom:calc(10px + var(--sab));z-index:30;width:56px;height:56px;border-radius:50%;border:3px solid var(--ouro);
+  background:var(--verde);color:#fff;font-size:26px;box-shadow:0 3px 8px #0005}
+
+h1{font-size:34px;line-height:1.15;margin:8px 0 14px;text-align:center}
+h2{font-size:28px;line-height:1.2;margin:12px 0}
+p{margin:0 0 14px}
+.card{background:#fff;border-radius:22px;padding:18px;box-shadow:0 4px 0 #0002;margin-bottom:16px}
+.fase{display:inline-block;background:var(--verde);color:#fff;border-radius:999px;padding:4px 16px;font-size:20px;margin-bottom:10px}
+.pista{font-size:24px;line-height:1.35}
+.aviso{background:#fff3c4;border:4px solid var(--ouro2);border-radius:18px;padding:12px 14px;font-size:22px;margin-bottom:16px;color:#5a3d00}
+
+.btn{display:block;width:100%;min-height:64px;border:0;border-radius:22px;font:inherit;font-size:22px;font-weight:800;padding:14px 16px;
+  color:#fff;background:var(--verde);box-shadow:0 6px 0 var(--verde-esc);margin:0 0 18px;cursor:pointer;touch-action:manipulation;transition:transform .08s,box-shadow .08s}
+.btn:active{transform:translateY(5px);box-shadow:0 1px 0 var(--verde-esc)}
+.btn.ouro{background:var(--ouro);color:var(--verde-esc);box-shadow:0 6px 0 var(--ouro2)}
+.btn.ouro:active{box-shadow:0 1px 0 var(--ouro2)}
+.btn.gigante{min-height:92px;font-size:28px;border-radius:28px}
+.btn.cinza{background:#5c6b63;box-shadow:0 6px 0 #3a453f}
+.btn.var{background:#2a2a72;box-shadow:0 6px 0 #14143f}
+.btn:disabled{opacity:1;cursor:default}
+.btn.resp{background:#fff;color:#10281b;border:4px solid var(--verde);box-shadow:0 6px 0 var(--verde);text-align:left}
+.btn.resp.errada{background:var(--erro);color:var(--erro-t);border-color:#e08a8a;box-shadow:0 2px 0 #e08a8a;transform:translateY(4px)}
+.btn.resp.certa{background:var(--ok);border-color:#1e9e5a;box-shadow:0 2px 0 #1e9e5a;transform:translateY(4px)}
+
+input[type=text]{width:100%;min-height:68px;border-radius:20px;border:4px solid var(--verde);padding:10px 16px;font:inherit;font-size:26px;font-weight:800;
+  background:#fff;color:#10281b;margin:6px 0 14px;outline:none;text-align:center}
+input[type=text]:focus{border-color:var(--ouro2);box-shadow:0 0 0 4px #ffc72c66}
+label.lb{font-size:20px;display:block}
+.msg{border-radius:18px;padding:12px 14px;margin-bottom:16px;font-size:22px;text-align:center}
+.msg.erro{background:#ffe1e1;color:var(--erro-t)}
+.msg.ok{background:var(--ok);color:#0a5a30}
+.msg.dica{background:#e4e9ff;color:#1b1f6e}
+.msg.var{background:#e4e9ff;color:#1b1f6e;border:3px dashed #2a2a72;text-align:left}
+
+/* modal */
+.modal{position:fixed;inset:0;background:#000a;z-index:50;display:flex;align-items:center;justify-content:center;padding:20px}
+.modal .box{background:#fff;border-radius:26px;padding:22px;max-width:380px;width:100%;text-align:center}
+.modal .box p{font-size:24px}
+
+/* nivel */
+.nivel{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;background:#00643799;pointer-events:none;animation:nivelOut 2.4s forwards}
+.nivel div{background:var(--ouro);color:var(--verde-esc);border-radius:30px;padding:22px 26px;text-align:center;font-size:30px;border:6px solid #fff;animation:pop .6s cubic-bezier(.2,1.6,.4,1)}
+.nivel b{display:block;font-size:36px}
+@keyframes nivelOut{0%,80%{opacity:1}100%{opacity:0}}
+@keyframes pop{from{transform:scale(.2) rotate(-8deg)}to{transform:scale(1) rotate(0)}}
+
+/* bola e animacoes */
+.bola{display:block;text-align:center;font-size:64px;animation:quica 1s infinite ease-in}
+@keyframes quica{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
+.ganho{font-size:56px;color:var(--verde);text-align:center;animation:sobe .8s cubic-bezier(.2,1.5,.4,1)}
+@keyframes sobe{from{transform:translateY(30px) scale(.3);opacity:0}to{transform:none;opacity:1}}
+.entra{animation:entra .9s cubic-bezier(.2,1.2,.4,1) both}
+@keyframes entra{from{transform:translateY(-120px) scale(.3);opacity:0}to{transform:none;opacity:1}}
+.tela{animation:tela .25s ease-out}
+@keyframes tela{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01s!important;animation-iteration-count:1!important;transition:none!important}
+}
+
+/* campinho */
+.campo{width:100%;height:auto;display:block;border-radius:18px}
+details.time{margin-bottom:16px;background:#fff;border-radius:22px;padding:6px 14px;box-shadow:0 4px 0 #0002}
+details.time summary{min-height:56px;display:flex;align-items:center;font-size:22px;cursor:pointer;list-style:none;color:var(--verde)}
+details.time summary::-webkit-details-marker{display:none}
+details.time[open] summary{margin-bottom:8px}
+
+.placar{text-align:center;font-size:64px;color:var(--verde-esc);margin:0}
+.taca{font-size:96px;text-align:center;animation:quica 1.2s infinite ease-in}
+#confete{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:15}
+.pais h2{margin-top:0}
+.pais .row{display:flex;justify-content:space-between;gap:10px;font-size:20px;border-bottom:2px solid #0001;padding:6px 0}
+.hist{margin:0;padding:0;list-style:none;font-size:20px}
+</style>
+</head>
+<body>
+<div id="wrap">
+  <div id="top" aria-live="polite">
+    <div class="pts"><small>PONTOS</small><span id="tPts">0</span></div>
+    <div class="tit" id="tTit">Jogador da Várzea</div>
+    <div class="cr"><small>CRAQUES</small><span id="tCr">0/11</span></div>
+  </div>
+  <main id="app"></main>
+</div>
+<button id="snd" type="button" aria-label="Som ligado/desligado">🔊</button>
+<canvas id="confete" hidden></canvas>
+
+<script>
+"use strict";
+
+/*LOGIC_START*/
+var FASES = [
+ {n:1, local:"Console do Switch", nome:"Yamal", num:19,
+  pista:"Tenho controles, mas não sou técnico. Levo você a mundos mágicos sem sair do sofá. Quando descanso, fico encaixado. A figurinha está no meu encaixe!",
+  aceitar:["yamal","lamine yamal","lamine"],
+  q:{t:"Lamine Yamal joga na seleção de qual país?", o:["Espanha","França","Portugal","Argentina"], d:"Eles ganharam a Eurocopa de 2024 com ele."},
+  var:"Olhe no lugar onde o Switch fica encaixado quando está descansando, por trás dele."},
+ {n:2, local:"Televisão", nome:"Raphinha", num:11,
+  pista:"Mostro os gols da Champions e os jogos do Verdão. Sou grande, tenho tela, mas não sou janela. Olhe pelas minhas costas!",
+  aceitar:["raphinha","rafinha","raphinia"],
+  q:{t:"A Copa do Mundo de 2026 acontece em quantos países?", o:["3","1","2","4"], d:"EUA, México e…"},
+  var:"Passe a mão por trás da TV, na parte de cima."},
+ {n:3, local:"Quadro do Ganesha", nome:"Odegaard", num:8,
+  pista:"Tenho tromba de elefante e sou dividido em cinco partes, como o campo tem partes. Ajudo a vencer obstáculos, igual um zagueiro. Procure meu rosto: a figurinha está escondida atrás dele!",
+  aceitar:["odegaard","martin odegaard","odegard","odgard","martin"],
+  q:{t:"Martin Odegaard é capitão da seleção de qual país?", o:["Noruega","Suécia","Dinamarca","Holanda"], d:"Fica no norte da Europa, com fiordes."},
+  var:"Olhe atrás do quadro do meio, o que mostra o rosto do elefante."},
+ {n:4, local:"Quadro do Machado de Assis", nome:"Cucurella", num:3,
+  pista:"Palavra puxa palavra, uma ideia traz outra… e uma figurinha traz outra! Procure o escritor de barba que escreveu isso. Olhe por baixo da moldura!",
+  aceitar:["cucurella","cururella","marc cucurella","kukurela","cucurela"],
+  q:{t:"Qual é o nome do estádio do Palmeiras?", o:["Nubank Parque","Maracanã","Morumbi","Mineirão"], d:"O nome é o de um banco digital roxinho, famoso pelo cartão."},
+  var:"Olhe na borda de baixo da moldura do quadro do escritor."},
+ {n:5, local:"Mesa de jantar", nome:"Bellingham", num:5,
+  pista:"Aqui a família faz o banquete dos campeões. Em cima tem comida, mas o segredo está escondido onde ninguém come. Olhe por baixo!",
+  aceitar:["bellingham","jude bellingham","belingham","jude"],
+  q:{t:"Bellingham joga em qual time famoso da Espanha?", o:["Real Madrid","Barcelona","Sevilla","Atlético de Madrid"], d:"É o time dos \"Galácticos\", de camisa branca."},
+  var:"Abaixe e olhe por baixo do tampo da mesa."},
+ {n:6, local:"Mesa da cozinha", nome:"João Pedro", num:9,
+  pista:"Aqui nasce o lanche do intervalo. Tem fruta, tem mesa, tem cheirinho bom. Procure quem enfeita a mesa!",
+  aceitar:["joao pedro","joaopedro","joao","jp"],
+  q:{t:"Quantos jogadores (contando o goleiro) cada time coloca em campo?", o:["11","9","10","12"], d:"É o mesmo número de figurinhas da sua missão!"},
+  var:"Olhe embaixo da fruteira ou do enfeite que fica na mesa."},
+ {n:7, local:"Freezer", nome:"Courtois", num:1,
+  aviso:"🧊 Peça um adulto para abrir o freezer!",
+  pista:"No intervalo, até o goleiro quer algo gelado. Procure onde moram o gelo e o sorvete. Abra com um adulto e encontre um muro de luvas!",
+  aceitar:["courtois","thibaut courtois","curtua","courtua","thibaut"],
+  q:{t:"Courtois joga em qual posição?", o:["Goleiro","Atacante","Zagueiro","Lateral"], d:"Ele é o único que pode usar as mãos dentro da área."},
+  var:"Dentro do freezer, na parte de dentro da tampa. Chame um adulto para abrir!"},
+ {n:8, local:"Banco da moto", nome:"Mbappé", num:10,
+  aviso:"🏍️ Não mexa na moto! A figurinha está em um saquinho em cima do banco.",
+  pista:"Duas rodas, muito barulho, e só vai rápido como o Mbappé. Mas hoje estou parada! Procure o lugar onde o piloto senta.",
+  aceitar:["mbappe","kylian mbappe","mbape","embape","kylian"],
+  q:{t:"Mbappé joga na seleção de qual país?", o:["França","Itália","Bélgica","Inglaterra"], d:"A camisa é azul e o galo é o símbolo."},
+  var:"Em cima do banco da moto, dentro de um saquinho. Só olhe, não mexa na moto!"},
+ {n:9, local:"Caixa de meias do Luke", nome:"Nyland", num:13,
+  pista:"Todo craque puxa a meia até o joelho! Vá até o seu quarto e abra o lugar onde elas dormem. Uma delas está guardando um segredo!",
+  aceitar:["nyland","orjan nyland","nailand","orjan","nylan"],
+  q:{t:"Qual outro país sedia a Copa de 2026, além de EUA e México?", o:["Canadá","Argentina","Brasil","Japão"], d:"É o país da folha de bordo."},
+  var:"Procure dentro de um par de meias dobrado na caixa."},
+ {n:10, local:"Monitor do computador", nome:"Bento", num:22,
+  pista:"Tenho milhões de pixels, mas não sou um jogador. Aqui se joga, se assiste e se aprende. Olhe atrás de mim, onde ficam os fios!",
+  aceitar:["bento"],
+  q:{t:"Quantas Copas do Mundo o Brasil já ganhou?", o:["5","3","4","6"], d:"Conte as estrelinhas no escudo da CBF."},
+  var:"Olhe atrás do monitor, perto dos fios."},
+ {n:11, local:"Armário da Lara", nome:"Sosa", num:7,
+  pista:"Última convocação! O craque que falta está no quarto da sua irmã, dentro do armário. Procure o último jogador da escalação e volte correndo para o jogo!",
+  aceitar:["sosa","ramon sosa","ramon"],
+  q:{t:"Ramón Sosa joga no Palmeiras. De qual país ele é?", o:["Paraguai","Uruguai","Chile","Peru"], d:"Fica ao lado do Brasil, e o idioma é o guarani."},
+  var:"Dentro do armário da Lara, em um lugar fácil de ver."}
+];
+
+var TITULOS = [[0,"Jogador da Várzea"],[2,"Garoto de Base"],[4,"Reserva"],[6,"Titular"],[8,"Craque do Time"],[10,"Capitão"],[11,"Craque do Mundo"]];
+var PTS_ACHAR = 100, CUSTO_VAR = 20, BONUS = [50,30,10];
+var MSG_FINAL_B64 = "8J+PhiBQQVJBQsOJTlMsIENSQVFVRSEgVm9jw6ogY29tcGxldG91IGEgZXNjYWxhw6fDo28hIE8gR3JhbmRlIENyYXF1ZSBNaXN0ZXJpb3NvIGRlaXhvdSBvIHRlc291cm8gZ3VhcmRhZG8gbm8gKipBUk3DgVJJTyBETyBQQVBBSSBFIERBIE1BTcODRSoqLiBDb3JyYSBsw6EgcGFyYSBwZWdhciBzZXVzIHByZXNlbnRlcyBkZSBEaWEgZGFzIENyaWFuw6dhcyEg8J+OgQ==";
+
+function normaliza(s){
+  s = String(s == null ? "" : s).toLowerCase();
+  s = s.replace(/ø/g,"o").replace(/æ/g,"ae").replace(/œ/g,"oe").replace(/ß/g,"ss").replace(/[đð]/g,"d").replace(/ł/g,"l");
+  s = s.normalize("NFD").replace(/[̀-ͯ]/g,"");
+  s = s.replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();
+  return s;
+}
+function nomeConfere(fase, texto){
+  var t = normaliza(texto);
+  if(!t) return false;
+  for(var i=0;i<fase.aceitar.length;i++){
+    if(t.indexOf(normaliza(fase.aceitar[i])) !== -1) return true;
+  }
+  return false;
+}
+function bonusPorErros(erros){ return erros >= 3 ? 0 : BONUS[erros]; }
+function aplicaVar(pontos){ return Math.max(0, pontos - CUSTO_VAR); }
+function tituloPara(achados){
+  var t = TITULOS[0][1];
+  for(var i=0;i<TITULOS.length;i++){ if(achados >= TITULOS[i][0]) t = TITULOS[i][1]; }
+  return t;
+}
+/* Desbloqueio sequencial: só a fase atual existe; avançar libera a seguinte. */
+function proximaFase(fase){ return Math.min(fase + 1, FASES.length + 1); }
+function embaralha(arr, rnd){
+  var a = arr.slice(), r = rnd || Math.random;
+  for(var i=a.length-1;i>0;i--){ var j = Math.floor(r()*(i+1)); var x=a[i]; a[i]=a[j]; a[j]=x; }
+  return a;
+}
+/*LOGIC_END*/
+
+/* ---------- estado ---------- */
+var KEY = "luke_escalacao_v1";
+var S;
+function novoEstado(){
+  return {iniciado:false, fase:1, passo:"pista", pontos:0, achados:0, somLigado:true,
+          tentNome:0, varUsado:false, quiz:null, ganhoFase:0, hist:[]};
+}
+function carrega(){
+  try{ var r = localStorage.getItem(KEY); if(r){ var o = JSON.parse(r); if(o && typeof o.fase==="number") return Object.assign(novoEstado(), o); } }catch(e){}
+  return novoEstado();
+}
+function salva(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+S = carrega();
+
+/* ---------- utilitários ---------- */
+var $ = function(s){ return document.querySelector(s); };
+var app = $("#app"), wrap = $("#wrap");
+function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+function faseAtual(){ return FASES[S.fase-1]; }
+function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
+
+/* ---------- som ---------- */
+var ac = null, primeiroToque = false;
+function audio(){
+  if(!ac){ try{ ac = new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} }
+  if(ac && ac.state==="suspended"){ try{ ac.resume(); }catch(e){} }
+  return ac;
+}
+function tom(freq, ini, dur, tipo, vol){
+  var c = audio(); if(!c) return;
+  var o = c.createOscillator(), g = c.createGain(), t0 = c.currentTime + ini;
+  o.type = tipo||"sine"; o.frequency.setValueAtTime(freq, t0);
+  g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(vol||0.15, t0+0.02);
+  g.gain.exponentialRampToValueAtTime(0.0001, t0+dur);
+  o.connect(g); g.connect(c.destination); o.start(t0); o.stop(t0+dur+0.05);
+}
+function som(tipo){
+  if(!S.somLigado || !primeiroToque) return;
+  if(tipo==="apito"){ tom(2400,0,0.18,"square",0.08); tom(2200,0.22,0.3,"square",0.08); }
+  else if(tipo==="gol"){ [523,659,784,1047].forEach(function(f,i){ tom(f,i*0.12,0.25,"triangle",0.18); }); }
+  else if(tipo==="erro"){ tom(330,0,0.18,"sine",0.12); tom(262,0.15,0.25,"sine",0.12); }
+  else if(tipo==="ok"){ tom(660,0,0.12,"triangle",0.15); tom(880,0.1,0.2,"triangle",0.15); }
+  else if(tipo==="nivel"){ [392,523,659,784,1047].forEach(function(f,i){ tom(f,i*0.1,0.22,"square",0.08); }); }
+}
+document.addEventListener("pointerdown", function(){ if(!primeiroToque){ primeiroToque = true; audio(); } }, {once:false, passive:true});
+$("#snd").addEventListener("click", function(){
+  S.somLigado = !S.somLigado; salva(); atualizaSomBtn(); if(S.somLigado) som("ok");
+});
+function atualizaSomBtn(){ $("#snd").textContent = S.somLigado ? "🔊" : "🔇"; }
+
+/* ---------- topo ---------- */
+function atualizaTopo(){
+  var on = S.iniciado;
+  $("#top").classList.toggle("on", on);
+  wrap.classList.toggle("has-top", on);
+  wrap.classList.toggle("start", !on);
+  $("#tPts").textContent = S.pontos;
+  $("#tTit").textContent = tituloPara(S.achados);
+  $("#tCr").textContent = S.achados + "/11";
+}
+
+/* ---------- campinho ---------- */
+var SLOTS = [[150,356],[42,282],[114,296],[186,296],[258,282],[78,198],[150,214],[222,198],[58,104],[150,82],[242,104]];
+function campoSVG(qtd, novo){
+  var s = '<svg class="campo" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Campinho com a escalação">'
+   + '<rect width="300" height="400" rx="16" fill="#1c9a52"/>'
+   + '<g fill="#17874a"><rect y="0" width="300" height="67"/><rect y="133" width="300" height="67"/><rect y="267" width="300" height="67"/></g>'
+   + '<g fill="none" stroke="#ffffffcc" stroke-width="3"><rect x="10" y="10" width="280" height="380" rx="8"/><line x1="10" y1="200" x2="290" y2="200"/>'
+   + '<circle cx="150" cy="200" r="36"/><rect x="85" y="10" width="130" height="60"/><rect x="85" y="330" width="130" height="60"/></g>';
+  for(var i=0;i<11;i++){
+    var p = SLOTS[i], x = p[0], y = p[1];
+    if(i < qtd){
+      var f = FASES[i], nome = f.nome.length > 9 ? f.nome.slice(0,9) : f.nome;
+      s += '<g' + (i===novo ? ' class="entra"' : '') + '><circle cx="'+x+'" cy="'+y+'" r="23" fill="#fff" stroke="#ffc72c" stroke-width="5"/>'
+        + '<text x="'+x+'" y="'+(y+8)+'" text-anchor="middle" font-size="22" font-weight="900" fill="#006437" font-family="Trebuchet MS,Segoe UI,sans-serif">'+f.num+'</text>'
+        + '<text x="'+x+'" y="'+(y+41)+'" text-anchor="middle" font-size="14" font-weight="900" fill="#fff" stroke="#003d22" stroke-width="3" paint-order="stroke" font-family="Trebuchet MS,Segoe UI,sans-serif">'+esc(nome)+'</text></g>';
+    } else {
+      s += '<circle cx="'+x+'" cy="'+y+'" r="21" fill="#ffffff22" stroke="#ffffffaa" stroke-width="3" stroke-dasharray="6 5"/>'
+        + '<text x="'+x+'" y="'+(y+8)+'" text-anchor="middle" font-size="22" font-weight="900" fill="#ffffffcc" font-family="Trebuchet MS,Segoe UI,sans-serif">?</text>';
+    }
+  }
+  return s + '</svg>';
+}
+function painelTime(){
+  return '<details class="time"><summary>⚽ Ver meu time (' + S.achados + '/11)</summary>' + campoSVG(S.achados, -1) + '</details>';
+}
+
+/* ---------- telas ---------- */
+function mostra(html){
+  app.innerHTML = '<div class="tela">' + html + '</div>';
+  window.scrollTo(0,0);
+  atualizaTopo();
+  var c = $("#confete"); if(S.passo!=="final") { c.hidden = true; parouConfete = true; }
+}
+
+function telaInicio(){
+  mostra('<h1>⚽ A Escalação Secreta do Verdão</h1>'
+   + '<span class="bola">⚽</span>'
+   + '<p style="font-size:22px;text-align:center">O Grande Craque Misterioso escondeu os presentes do Dia das Crianças e espalhou 11 craques pela casa! Só quem completar a escalação descobre onde está o tesouro. Você começa como Jogador da Várzea e precisa virar CRAQUE DO MUNDO. Bora, Luke?</p>'
+   + '<button class="btn ouro gigante" id="go" type="button">COMEÇAR O JOGO!</button>');
+  $("#go").onclick = function(){ S.iniciado = true; S.passo = "pista"; salva(); som("apito"); render(); };
+}
+
+function telaPista(msg){
+  var f = faseAtual();
+  var h = painelTime() + '<span class="fase">FASE ' + f.n + ' de 11</span>';
+  if(f.aviso) h += '<div class="aviso">' + esc(f.aviso) + '</div>';
+  h += '<div class="card"><div class="pista">' + esc(f.pista) + '</div></div>';
+  if(S.varUsado) h += '<div class="msg var">📺 <b>VAR:</b> ' + esc(f.var) + '</div>';
+  if(msg) h += '<div class="msg ' + msg.t + '">' + esc(msg.m) + '</div>';
+  h += '<label class="lb" for="nome">Qual é o nome do craque na figurinha?</label>'
+     + '<input type="text" id="nome" autocapitalize="words" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="go" placeholder="Digite o nome aqui">'
+     + '<button class="btn ouro" id="ok" type="button">ACHEI A FIGURINHA!</button>';
+  if(!S.varUsado) h += '<button class="btn var" id="var" type="button">📺 VAR (dica extra, −20 pts)</button>';
+  mostra(h);
+  var inp = $("#nome");
+  function enviar(){
+    audio();
+    if(nomeConfere(f, inp.value)) acertouNome();
+    else { S.tentNome++; salva(); som("erro"); telaPista({t:"erro", m:"Hmm, essa não é a figurinha certa! Olhe o nome escrito nela e tente de novo 😉"}); }
+  }
+  $("#ok").onclick = enviar;
+  inp.addEventListener("keydown", function(e){ if(e.key==="Enter"){ e.preventDefault(); enviar(); } });
+  var v = $("#var");
+  if(v) v.onclick = function(){
+    confirma("Quer a dica extra? Custa 20 pontos.", "SIM, QUERO!", "NÃO", function(){
+      S.varUsado = true; S.pontos = aplicaVar(S.pontos); salva(); som("ok"); telaPista();
+    });
+  };
+}
+
+function acertouNome(){
+  var f = faseAtual(), antes = tituloPara(S.achados);
+  S.achados++; S.pontos += PTS_ACHAR;
+  S.passo = "quiz";
+  S.quiz = {ordem: embaralha(f.q.o), erradas: [], fim:false, bonus:0};
+  salva(); som("gol");
+  if(tituloPara(S.achados) !== antes) nivelAcima(tituloPara(S.achados));
+  telaQuiz({t:"ok", m:"⚽ GOOOOL! Você achou o " + f.nome + "! Agora a pergunta bônus!"});
+}
+
+function nivelAcima(titulo){
+  setTimeout(function(){ som("nivel"); }, 500);
+  var d = document.createElement("div"); d.className = "nivel";
+  d.innerHTML = '<div>⬆️ SUBIU DE NÍVEL!<b>' + esc(titulo) + '</b></div>';
+  document.body.appendChild(d);
+  setTimeout(function(){ d.remove(); }, 2500);
+}
+
+function telaQuiz(msg){
+  var f = faseAtual(), q = S.quiz, certa = f.q.o[0];
+  var h = '<span class="fase">FASE ' + f.n + ' de 11 · BÔNUS</span>'
+        + '<div class="card"><div class="pista">' + esc(f.q.t) + '</div></div>';
+  if(msg) h += '<div class="msg ' + msg.t + '">' + esc(msg.m) + '</div>';
+  if(q.erradas.length > 0 && !q.fim) h += '<div class="msg dica">💡 Dica: ' + esc(f.q.d) + '</div>';
+  q.ordem.forEach(function(op, i){
+    var errada = q.erradas.indexOf(op) !== -1, mostraCerta = q.fim && op === certa;
+    h += '<button class="btn resp' + (errada ? ' errada' : '') + (mostraCerta ? ' certa' : '') + '" type="button" data-i="' + i + '"'
+       + ((errada || q.fim) ? ' disabled' : '') + '>' + esc(op) + '</button>';
+  });
+  if(q.fim) h += '<button class="btn ouro" id="seg" type="button">CONTINUAR ➜</button>';
+  mostra(h);
+  if(q.fim){ $("#seg").onclick = function(){ S.passo = "resultado"; salva(); render(); }; return; }
+  app.querySelectorAll(".resp").forEach(function(b){
+    b.onclick = function(){
+      audio();
+      var op = q.ordem[+b.getAttribute("data-i")];
+      if(op === certa){
+        q.bonus = bonusPorErros(q.erradas.length); S.pontos += q.bonus; q.fim = true; salva(); som("gol");
+        var e = q.erradas.length;
+        telaQuiz({t:"ok", m: e===0 ? "CRAQUE! De primeira! +50" : "Boa! Acertou na " + (e+1) + "ª tentativa! +" + q.bonus});
+      } else {
+        q.erradas.push(op);
+        if(q.erradas.length >= 3){ q.bonus = 0; q.fim = true; salva(); som("erro"); telaQuiz({t:"dica", m:"Era essa! Você aprendeu uma nova 😉 Anotei pra você. Bora pro próximo lance!"}); }
+        else { salva(); som("erro"); telaQuiz({t:"erro", m:"Quase! Tente de novo, o Verdão acredita em você 💚"}); }
+      }
+    };
+  });
+}
+
+function telaResultado(){
+  var f = faseAtual(), q = S.quiz || {bonus:0};
+  var ganho = PTS_ACHAR + q.bonus;
+  var ultima = S.fase === 11;
+  mostra('<span class="fase">FASE ' + f.n + ' de 11</span>'
+   + '<h2 style="text-align:center">' + esc(f.nome) + ' entrou em campo!</h2>'
+   + '<div class="ganho">+' + ganho + '</div>'
+   + '<p style="text-align:center">' + PTS_ACHAR + ' da figurinha + ' + q.bonus + ' do bônus' + (S.varUsado ? ' (VAR custou 20)' : '') + '</p>'
+   + '<div class="card">' + campoSVG(S.achados, S.achados-1) + '</div>'
+   + '<button class="btn ouro gigante" id="prox" type="button">' + (ultima ? 'VER O TESOURO 🏆' : 'PRÓXIMA PISTA ➜') + '</button>');
+  $("#prox").onclick = function(){
+    if(ultima){ S.passo = "final"; }
+    else { S.fase = proximaFase(S.fase); S.passo = "pista"; S.tentNome = 0; S.varUsado = false; S.quiz = null; }
+    salva(); som("apito"); render();
+  };
+}
+
+function telaFinal(){
+  var msg = "";
+  try{
+    var bin = atob(MSG_FINAL_B64), bytes = new Uint8Array(bin.length);
+    for(var i=0;i<bin.length;i++) bytes[i] = bin.charCodeAt(i);
+    msg = new TextDecoder("utf-8").decode(bytes);
+  }catch(e){ msg = "Parabéns, craque! Procure os pais para pegar seu presente!"; }
+  var html = esc(msg).replace(/\*\*(.+?)\*\*/g, '<b style="color:var(--verde);font-size:28px">$1</b>');
+  mostra('<div class="taca">🏆</div><h1>CRAQUE DO MUNDO</h1>'
+   + '<p class="placar">' + S.pontos + '</p><p style="text-align:center">pontos de 1.650 possíveis</p>'
+   + '<div class="card" style="font-size:24px;text-align:center">' + html + '</div>'
+   + '<div class="card">' + campoSVG(11, -1) + '</div>');
+  som("gol"); iniciaConfete();
+}
+
+/* ---------- confete ---------- */
+var parouConfete = true;
+function iniciaConfete(){
+  var cv = $("#confete"), ctx = cv.getContext("2d");
+  cv.hidden = false; parouConfete = false;
+  function ajusta(){ cv.width = innerWidth; cv.height = innerHeight; }
+  ajusta(); window.addEventListener("resize", ajusta);
+  var cores = ["#ffc72c","#00854a","#ffffff","#006437","#ff6b6b","#4dabf7"], ps = [];
+  var reduzido = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  for(var i=0;i<(reduzido?40:160);i++) ps.push({x:Math.random()*cv.width, y:reduzido?Math.random()*cv.height:-Math.random()*cv.height, w:6+Math.random()*8, h:10+Math.random()*10,
+    vy:2+Math.random()*3, vx:-1+Math.random()*2, r:Math.random()*6, vr:-.2+Math.random()*.4, c:cores[i%cores.length]});
+  function quadro(){
+    if(parouConfete) { ctx.clearRect(0,0,cv.width,cv.height); return; }
+    ctx.clearRect(0,0,cv.width,cv.height);
+    ps.forEach(function(p){
+      if(!reduzido){ p.y += p.vy; p.x += p.vx + Math.sin(p.r)*1.2; p.r += p.vr; if(p.y > cv.height+20){ p.y = -20; p.x = Math.random()*cv.width; } }
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.r); ctx.fillStyle = p.c; ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+    });
+    if(!reduzido) requestAnimationFrame(quadro);
+  }
+  quadro();
+}
+
+/* ---------- modal ---------- */
+function confirma(texto, sim, nao, aoSim){
+  var m = document.createElement("div"); m.className = "modal";
+  m.innerHTML = '<div class="box"><p>' + esc(texto) + '</p><button class="btn ouro" data-r="1" type="button">' + esc(sim) + '</button><button class="btn cinza" data-r="0" type="button" style="margin-bottom:0">' + esc(nao) + '</button></div>';
+  document.body.appendChild(m);
+  m.addEventListener("click", function(e){
+    var r = e.target.getAttribute && e.target.getAttribute("data-r");
+    if(r === null) return;
+    m.remove(); if(r === "1") aoSim();
+  });
+}
+
+/* ---------- modo dos pais (segurar o título por 3s) ---------- */
+(function(){
+  var t = null, tit = $("#tTit");
+  function ini(e){ clearTimeout(t); t = setTimeout(painelPais, 3000); }
+  function fim(){ clearTimeout(t); }
+  tit.addEventListener("pointerdown", ini);
+  ["pointerup","pointerleave","pointercancel"].forEach(function(ev){ tit.addEventListener(ev, fim); });
+  tit.addEventListener("contextmenu", function(e){ e.preventDefault(); });
+})();
+function painelPais(){
+  if(document.querySelector(".modal")) return;
+  var m = document.createElement("div"); m.className = "modal";
+  var opts = ""; for(var i=1;i<=11;i++) opts += '<option value="'+i+'">Fase '+i+' – '+esc(FASES[i-1].nome)+'</option>';
+  m.innerHTML = '<div class="box pais"><h2>👨‍👩‍👦 Modo dos pais</h2>'
+    + '<button class="btn" data-a="prog" type="button">Ver progresso</button>'
+    + '<select id="selFase" style="width:100%;min-height:60px;font:inherit;font-size:20px;margin-bottom:12px;border-radius:14px">' + opts + '</select>'
+    + '<button class="btn" data-a="pular" type="button">Pular para a fase escolhida</button>'
+    + '<button class="btn var" data-a="reset" type="button">Reiniciar o jogo</button>'
+    + '<button class="btn cinza" data-a="x" type="button" style="margin-bottom:0">Fechar</button></div>';
+  document.body.appendChild(m);
+  m.addEventListener("click", function(e){
+    var a = e.target.getAttribute && e.target.getAttribute("data-a"); if(!a) return;
+    if(a === "x"){ m.remove(); }
+    else if(a === "prog"){
+      alert("Fase: " + Math.min(S.fase,11) + " de 11 (" + S.passo + ")\nPontos: " + S.pontos + "\nCraques: " + S.achados + "/11\nTítulo: " + tituloPara(S.achados));
+    }
+    else if(a === "pular"){
+      var n = +$("#selFase").value;
+      confirma("Pular para a fase " + n + "?", "SIM", "NÃO", function(){
+        S.fase = n; S.passo = "pista"; S.achados = n-1; S.tentNome = 0; S.varUsado = false; S.quiz = null; S.iniciado = true;
+        salva(); m.remove(); render();
+      });
+    }
+    else if(a === "reset"){
+      confirma("Reiniciar o jogo? Todo o progresso será apagado.", "SIM, REINICIAR", "NÃO", function(){
+        var som_ = S.somLigado; S = novoEstado(); S.somLigado = som_; salva(); m.remove(); render();
+      });
+    }
+  });
+}
+
+/* ---------- roteador ---------- */
+function render(){
+  atualizaSomBtn();
+  if(!S.iniciado) return telaInicio();
+  if(S.passo === "quiz" && S.quiz) return telaQuiz();
+  if(S.passo === "resultado") return telaResultado();
+  if(S.passo === "final") return telaFinal();
+  S.passo = "pista"; telaPista();
+}
+render();
+</script>
+</body>
+</html>

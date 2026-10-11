@@ -1,28 +1,37 @@
 User-agent: *
 Allow: /
+Disallow: /jogo-luke/
 
 User-agent: GPTBot
 Allow: /
+Disallow: /jogo-luke/
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /jogo-luke/
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /jogo-luke/
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /jogo-luke/
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /jogo-luke/
 
 User-agent: anthropic-ai
 Allow: /
+Disallow: /jogo-luke/
 
 User-agent: CCBot
 Allow: /
+Disallow: /jogo-luke/
 
 User-agent: Bingbot
 Allow: /
+Disallow: /jogo-luke/
 
 Sitemap: https://edsonegilio.com.br/sitemap.xml
