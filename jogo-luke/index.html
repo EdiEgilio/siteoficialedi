@@ -181,14 +181,14 @@ var FASES = [
   aceitar:["mbappe","kylian mbappe","mbape","embape","kylian"],
   q:{t:"Mbappé joga na seleção de qual país?", o:["França","Itália","Bélgica","Inglaterra"], d:"A camisa é azul e o galo é o símbolo."},
   var:"Em cima do banco da moto, dentro de um saquinho. Só olhe, não mexa na moto!"},
- {n:9, local:"Caixa de meias do Luke", nome:"Nyland", num:13,
+ {n:9, local:"Caixa de meias do Luke", nome:"Pedro Neto", curto:"P. Neto", num:17,
   pista:"Todo craque puxa a meia até o joelho! Vá até o seu quarto e abra o lugar onde elas dormem. Uma delas está guardando um segredo!",
-  aceitar:["nyland","orjan nyland","nailand","orjan","nylan"],
+  aceitar:["pedro neto","pedroneto","neto","pedro"],
   q:{t:"Qual outro país sedia a Copa de 2026, além de EUA e México?", o:["Canadá","Argentina","Brasil","Japão"], d:"É o país da folha de bordo."},
   var:"Procure dentro de um par de meias dobrado na caixa."},
- {n:10, local:"Monitor do computador", nome:"Bento", num:22,
+ {n:10, local:"Monitor do computador", nome:"Ridle Baku", curto:"Baku", num:14,
   pista:"Tenho milhões de pixels, mas não sou um jogador. Aqui se joga, se assiste e se aprende. Olhe atrás de mim, onde ficam os fios!",
-  aceitar:["bento"],
+  aceitar:["ridle baku","ridley baku","baku","ridle","bako"],
   q:{t:"Quantas Copas do Mundo o Brasil já ganhou?", o:["5","3","4","6"], d:"Conte as estrelinhas no escudo da CBF."},
   var:"Olhe atrás do monitor, perto dos fios."},
  {n:11, local:"Armário da Lara", nome:"Sosa", num:7,
@@ -305,7 +305,7 @@ function campoSVG(qtd, novo){
   for(var i=0;i<11;i++){
     var p = SLOTS[i], x = p[0], y = p[1];
     if(i < qtd){
-      var f = FASES[i], nome = f.nome.length > 9 ? f.nome.slice(0,9) : f.nome;
+      var f = FASES[i], nome = f.curto || (f.nome.length > 9 ? f.nome.slice(0,9) : f.nome);
       s += '<g' + (i===novo ? ' class="entra"' : '') + '><circle cx="'+x+'" cy="'+y+'" r="23" fill="#fff" stroke="#ffc72c" stroke-width="5"/>'
         + '<text x="'+x+'" y="'+(y+8)+'" text-anchor="middle" font-size="22" font-weight="900" fill="#006437" font-family="Trebuchet MS,Segoe UI,sans-serif">'+f.num+'</text>'
         + '<text x="'+x+'" y="'+(y+41)+'" text-anchor="middle" font-size="14" font-weight="900" fill="#fff" stroke="#003d22" stroke-width="3" paint-order="stroke" font-family="Trebuchet MS,Segoe UI,sans-serif">'+esc(nome)+'</text></g>';
