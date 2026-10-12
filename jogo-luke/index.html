@@ -329,11 +329,11 @@ function mostra(html){
 }
 
 var INTRO = [
-  {e:"💚", t:"Oi, Luke!", p:["Hoje o dia é todo seu!","Preparamos uma surpresa muito especial, feita com muito carinho por quem te ama demais."]},
-  {e:"🎈", t:"Dia das Crianças!", p:["É o dia de brincar, rir, sonhar e se divertir sem pressa.","Todo dia você já é um craque no nosso coração, mas hoje a gente quer comemorar você do tamanho que você merece!"]},
-  {e:"🕵️", t:"Uma missão secreta", p:["O Grande Craque Misterioso apareceu por aqui e escondeu os seus presentes!","Para deixar tudo mais emocionante, ele espalhou 11 craques pela casa."]},
-  {e:"⚽", t:"Como é a brincadeira", l:["📖 Leia a pista com atenção","🔎 Procure a figurinha escondida","⌨️ Digite o nome do craque","❓ Responda a pergunta bônus","🏆 Ganhe pontos e vire CRAQUE DO MUNDO!"], p:["Só quem completar a escalação descobre onde está o tesouro."]},
-  {e:"🛡️", t:"Combinados do time", l:["🧊 O freezer só abre com um adulto","🏍️ Na moto, só olhar: não mexa nela","📺 Travou? Use o VAR para uma dica extra (custa 20 pontos)","🐢 Sem pressa: dá para errar e tentar de novo"], p:["Combinado, craque?"]}
+  {e:"💚", t:"Oi, Luke!", p:["Hoje o dia é seu, com uma surpresa feita com carinho."]},
+  {e:"🎈", t:"Dia das Crianças!", p:["É dia de brincar, rir e sonhar, e de comemorar."]},
+  {e:"🕵️", t:"Uma missão secreta", p:["O Grande Craque Misterioso escondeu os presentes e espalhou 11 craques pela casa."]},
+  {e:"⚽", t:"Como é a brincadeira", l:["📖 Leia a pista com atenção","🔎 Procure a figurinha escondida","⌨️ Digite o nome do craque","❓ Responda a pergunta bônus","🏆 Ganhe pontos e vire CRAQUE DO MUNDO!"], p:[]},
+  {e:"🛡️", t:"Combinados do time", p:["A regra é “sem pressa, dá para errar”.","Qualquer coisa, só chamar o VAR.","Rumo à vitória!"]}
 ];
 function telaIntro(){
   var i = Math.max(0, Math.min(S.introPasso|0, INTRO.length-1)), d = INTRO[i], ult = i === INTRO.length-1;
