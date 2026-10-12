@@ -335,7 +335,7 @@ var INTRO = [
   {e:"🎈", t:"Dia das Crianças!", p:["É dia de brincar, rir e sonhar, e de comemorar."]},
   {e:"🕵️", t:"Uma missão secreta", p:["O Grande Craque Misterioso escondeu os presentes e espalhou 11 craques pela casa."]},
   {e:"⚽", t:"Como é a brincadeira", l:["📖 Leia a pista com atenção","🔎 Procure a figurinha escondida","⌨️ Digite o nome do craque","❓ Responda a pergunta bônus","🏆 Ganhe pontos e vire CRAQUE DO MUNDO!"], p:[]},
-  {e:"🛡️", t:"Combinados do time", p:["A regra é “sem pressa, dá para errar”.","Qualquer coisa, só chamar o VAR.","Rumo à vitória!"]}
+  {e:"🛡️", t:"Combinados do time", p:["A regra é “sem pressa, dá para errar”.","Rumo à vitória!"]}
 ];
 function telaIntro(){
   var i = Math.max(0, Math.min(S.introPasso|0, INTRO.length-1)), d = INTRO[i], ult = i === INTRO.length-1;
@@ -363,12 +363,10 @@ function telaPista(msg){
   var h = painelTime() + '<span class="fase">FASE ' + f.n + ' de 11</span>';
   if(f.aviso) h += '<div class="aviso">' + esc(f.aviso) + '</div>';
   h += '<div class="card"><div class="pista">' + esc(f.pista) + '</div></div>';
-  if(S.varUsado) h += '<div class="msg var">📺 <b>VAR:</b> ' + esc(f.var) + '</div>';
   if(msg) h += '<div class="msg ' + msg.t + '">' + esc(msg.m) + '</div>';
   h += '<label class="lb" for="nome">Qual é o nome do craque na figurinha?</label>'
      + '<input type="text" id="nome" autocapitalize="words" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="go" placeholder="Digite o nome aqui">'
      + '<button class="btn ouro" id="ok" type="button">ACHEI A FIGURINHA!</button>';
-  if(!S.varUsado) h += '<button class="btn var" id="var" type="button">📺 VAR (dica extra, −20 pts)</button>';
   mostra(h);
   var inp = $("#nome");
   function enviar(){
@@ -378,12 +376,6 @@ function telaPista(msg){
   }
   $("#ok").onclick = enviar;
   inp.addEventListener("keydown", function(e){ if(e.key==="Enter"){ e.preventDefault(); enviar(); } });
-  var v = $("#var");
-  if(v) v.onclick = function(){
-    confirma("Quer a dica extra? Custa 20 pontos.", "SIM, QUERO!", "NÃO", function(){
-      S.varUsado = true; S.pontos = aplicaVar(S.pontos); salva(); som("ok"); telaPista();
-    });
-  };
 }
 
 function acertouNome(){
@@ -442,7 +434,7 @@ function telaResultado(){
   mostra('<span class="fase">FASE ' + f.n + ' de 11</span>'
    + '<h2 style="text-align:center">' + esc(f.nome) + ' entrou em campo!</h2>'
    + '<div class="ganho">+' + ganho + '</div>'
-   + '<p style="text-align:center">' + PTS_ACHAR + ' da figurinha + ' + q.bonus + ' do bônus' + (S.varUsado ? ' (VAR custou 20)' : '') + '</p>'
+   + '<p style="text-align:center">' + PTS_ACHAR + ' da figurinha + ' + q.bonus + ' do bônus' + '</p>'
    + '<div class="card">' + campoSVG(S.achados, S.achados-1) + '</div>'
    + '<button class="btn ouro gigante" id="prox" type="button">' + (ultima ? 'VER O TESOURO 🏆' : 'PRÓXIMA PISTA ➜') + '</button>');
   $("#prox").onclick = function(){
