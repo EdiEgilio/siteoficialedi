@@ -241,11 +241,12 @@ function novoEstado(){
           tentNome:0, varUsado:false, quiz:null, ganhoFase:0, hist:[]};
 }
 function carrega(){
-  try{ var r = localStorage.getItem(KEY); if(r){ var o = JSON.parse(r); if(o && typeof o.fase==="number") return Object.assign(novoEstado(), o); } }catch(e){}
+  try{ var r = localStorage.getItem(KEY); if(r){ var o = JSON.parse(r); if(o && typeof o.fase==="number"){ o = Object.assign(novoEstado(), o); if(!o.introFeita && o.fase===1 && !o.achados){ o.iniciado = false; } return o; } } }catch(e){}
   return novoEstado();
 }
 function salva(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
 S = carrega();
+try{ if(/[?&]reset=1/.test(location.search)){ S = novoEstado(); salva(); history.replaceState(null,"",location.pathname); } }catch(e){}
 
 /* ---------- utilitários ---------- */
 var $ = function(s){ return document.querySelector(s); };
