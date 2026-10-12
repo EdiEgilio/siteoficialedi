@@ -112,6 +112,14 @@ details.time[open] summary{margin-bottom:8px}
 .pais h2{margin-top:0}
 .pais .row{display:flex;justify-content:space-between;gap:10px;font-size:20px;border-bottom:2px solid #0001;padding:6px 0}
 .hist{margin:0;padding:0;list-style:none;font-size:20px}
+.intro{text-align:center;min-height:calc(100dvh - 60px);display:flex;flex-direction:column;justify-content:center}
+.intro .ie{font-size:84px;line-height:1;animation:quica 1.4s infinite ease-in}
+.intro .ip{font-size:24px;line-height:1.4}
+.il{list-style:none;margin:0 0 16px;padding:0;text-align:left}
+.il li{background:#ffffff1f;border-radius:16px;padding:10px 14px;margin-bottom:8px;font-size:21px}
+.dots{display:flex;justify-content:center;gap:10px;margin:6px 0 20px}
+.dots span{width:14px;height:14px;border-radius:50%;background:#ffffff55}
+.dots span.on{background:var(--ouro);transform:scale(1.3)}
 </style>
 </head>
 <body>
@@ -229,7 +237,7 @@ function embaralha(arr, rnd){
 var KEY = "luke_escalacao_v1";
 var S;
 function novoEstado(){
-  return {iniciado:false, fase:1, passo:"pista", pontos:0, achados:0, somLigado:true,
+  return {iniciado:false, introFeita:false, introPasso:0, fase:1, passo:"pista", pontos:0, achados:0, somLigado:true,
           tentNome:0, varUsado:false, quiz:null, ganhoFase:0, hist:[]};
 }
 function carrega(){
@@ -318,6 +326,26 @@ function mostra(html){
   window.scrollTo(0,0);
   atualizaTopo();
   var c = $("#confete"); if(S.passo!=="final") { c.hidden = true; parouConfete = true; }
+}
+
+var INTRO = [
+  {e:"💚", t:"Oi, Luke!", p:["Hoje o dia é todo seu!","Preparamos uma surpresa muito especial, feita com muito carinho por quem te ama demais."]},
+  {e:"🎈", t:"Dia das Crianças!", p:["É o dia de brincar, rir, sonhar e se divertir sem pressa.","Todo dia você já é um craque no nosso coração, mas hoje a gente quer comemorar você do tamanho que você merece!"]},
+  {e:"🕵️", t:"Uma missão secreta", p:["O Grande Craque Misterioso apareceu por aqui e escondeu os seus presentes!","Para deixar tudo mais emocionante, ele espalhou 11 craques pela casa."]},
+  {e:"⚽", t:"Como é a brincadeira", l:["📖 Leia a pista com atenção","🔎 Procure a figurinha escondida","⌨️ Digite o nome do craque","❓ Responda a pergunta bônus","🏆 Ganhe pontos e vire CRAQUE DO MUNDO!"], p:["Só quem completar a escalação descobre onde está o tesouro."]},
+  {e:"🛡️", t:"Combinados do time", l:["🧊 O freezer só abre com um adulto","🏍️ Na moto, só olhar: não mexa nela","📺 Travou? Use o VAR para uma dica extra (custa 20 pontos)","🐢 Sem pressa: dá para errar e tentar de novo"], p:["Combinado, craque?"]}
+];
+function telaIntro(){
+  var i = Math.max(0, Math.min(S.introPasso|0, INTRO.length-1)), d = INTRO[i], ult = i === INTRO.length-1;
+  var h = '<div class="intro"><div class="ie">' + d.e + '</div><h1>' + esc(d.t) + '</h1>';
+  d.p.forEach(function(x){ h += '<p class="ip">' + esc(x) + '</p>'; });
+  if(d.l){ h += '<ul class="il">'; d.l.forEach(function(x){ h += '<li>' + esc(x) + '</li>'; }); h += '</ul>'; }
+  h += '<div class="dots">'; for(var k=0;k<INTRO.length;k++) h += '<span' + (k===i ? ' class="on"' : '') + '></span>'; h += '</div>';
+  h += '<button class="btn ouro gigante" id="inx" type="button">' + (ult ? 'VAMOS LÁ! ⚽' : 'PRÓXIMO ➜') + '</button>';
+  if(i > 0) h += '<button class="btn cinza" id="ivo" type="button">⬅ VOLTAR</button>';
+  mostra(h + '</div>');
+  $("#inx").onclick = function(){ audio(); som("ok"); if(ult){ S.introFeita = true; } else { S.introPasso = i+1; } salva(); render(); };
+  var v = $("#ivo"); if(v) v.onclick = function(){ S.introPasso = i-1; salva(); render(); };
 }
 
 function telaInicio(){
@@ -516,6 +544,7 @@ function painelPais(){
 /* ---------- roteador ---------- */
 function render(){
   atualizaSomBtn();
+  if(!S.iniciado && !S.introFeita) return telaIntro();
   if(!S.iniciado) return telaInicio();
   if(S.passo === "quiz" && S.quiz) return telaQuiz();
   if(S.passo === "resultado") return telaResultado();
